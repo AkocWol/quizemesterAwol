@@ -1,0 +1,107 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|c:\\users\\akocp\\onedrive - roc ter aa\\game making\\leerjaar 3\\periode 1\\quizemesterawol\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|c:\\users\\akocp\\onedrive - roc ter aa\\game making\\leerjaar 3\\periode 1\\quizemesterawol\\form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|solutionrelative:form2.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|c:\\users\\akocp\\onedrive - roc ter aa\\game making\\leerjaar 3\\periode 1\\quizemesterawol\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EDC1F3C2-663E-4C7A-A418-57824D2D2E74}|quizemesterAwol.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form2.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form2.Designer.cs",
+              "RelativeDocumentMoniker": "Form2.Designer.cs",
+              "ToolTip": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form2.Designer.cs",
+              "RelativeToolTip": "Form2.Designer.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAmwDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-25T07:53:44.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T11:26:56.677Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAIwDQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T12:25:10.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form2.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form2.cs",
+              "RelativeDocumentMoniker": "Form2.cs",
+              "ToolTip": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form2.cs [Design]",
+              "RelativeToolTip": "Form2.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T12:21:18.376Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form2.cs",
+              "DocumentMoniker": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form2.cs",
+              "RelativeDocumentMoniker": "Form2.cs",
+              "ToolTip": "C:\\Users\\akocp\\OneDrive - ROC Ter AA\\Game making\\leerjaar 3\\periode 1\\quizemesterAwol\\Form2.cs",
+              "RelativeToolTip": "Form2.cs",
+              "ViewState": "AgIAAIAAAAAAAAAAAAAgwJQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-25T07:18:58.895Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

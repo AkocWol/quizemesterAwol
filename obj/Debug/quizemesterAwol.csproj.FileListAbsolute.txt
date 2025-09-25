@@ -1,0 +1,12 @@
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\bin\Debug\quizemesterAwol.exe.config
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\bin\Debug\quizemesterAwol.exe
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\bin\Debug\quizemesterAwol.pdb
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.csproj.AssemblyReference.cache
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.Form1.resources
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.Properties.Resources.resources
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.csproj.GenerateResource.cache
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.csproj.CoreCompileInputs.cache
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.exe
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.pdb
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.exe.config
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.Form2.resources
