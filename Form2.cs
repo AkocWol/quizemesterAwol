@@ -26,6 +26,9 @@ namespace quizemesterAwol
         private bool _quizRunning = false;
         private bool _skipUsed = false;
         private List<int> _selectedCategoryIds = new List<int>(); // leeg = General (alles)
+        private const int QUESTION_TIME_LIMIT = 10;
+        private int _qTimeRemaining = QUESTION_TIME_LIMIT;
+
         public string CurrentUsername { get; set; } = "Unknown";   // Zet dit vanuit Form1
 
         public Form2()
@@ -38,7 +41,6 @@ namespace quizemesterAwol
         {
             try
             {
-                EnsureSchema();                 // <-- NIEUW
                 ResetUi();
                 SetAnswerButtonsEnabled(false);
                 LoadCategoriesIntoCheckedListBox();
@@ -47,70 +49,6 @@ namespace quizemesterAwol
             {
                 MessageBox.Show("Startup error:\n" + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void EnsureSchema()
-        {
-            using (var con = new SqlConnection(connectionString))
-            using (var cmd = new SqlCommand(@"
--- 1) Categories tabel (eenmalig) + altijd de 2 standaard categorieën aanwezig
-IF OBJECT_ID('dbo.Categories','U') IS NULL
-BEGIN
-  CREATE TABLE dbo.Categories(
-    CategoryID INT IDENTITY(1,1) PRIMARY KEY,
-    Name NVARCHAR(50) NOT NULL UNIQUE
-  );
-END;
-
-IF NOT EXISTS (SELECT 1 FROM dbo.Categories WHERE Name=N'Science')
-  INSERT INTO dbo.Categories(Name) VALUES (N'Science');
-IF NOT EXISTS (SELECT 1 FROM dbo.Categories WHERE Name=N'World')
-  INSERT INTO dbo.Categories(Name) VALUES (N'World');
-
--- 2) QuizQuestions.CategoryID kolom (alleen als nog niet bestaat)
-IF COL_LENGTH('dbo.QuizQuestions','CategoryID') IS NULL
-  ALTER TABLE dbo.QuizQuestions ADD CategoryID INT NULL;
-
--- 3) Foreign key (alleen als nog niet bestaat)
-IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name = 'FK_QuizQuestions_Categories')
-BEGIN
-  ALTER TABLE dbo.QuizQuestions  WITH NOCHECK
-    ADD CONSTRAINT FK_QuizQuestions_Categories
-    FOREIGN KEY (CategoryID) REFERENCES dbo.Categories(CategoryID);
-END;
-
--- 4) Scores tabel (eenmalig)
-IF OBJECT_ID('dbo.Scores','U') IS NULL
-BEGIN
-  CREATE TABLE dbo.Scores(
-    ScoreID INT IDENTITY(1,1) PRIMARY KEY,
-    UserID INT NOT NULL FOREIGN KEY REFERENCES dbo.Users(UserID),
-    Score INT NOT NULL,
-    TotalQuestions INT NOT NULL,
-    CreatedAt DATETIME NOT NULL DEFAULT GETDATE(),
-    CategoryID INT NULL FOREIGN KEY REFERENCES dbo.Categories(CategoryID)
-  );
-  CREATE INDEX IX_Scores_Score ON dbo.Scores(Score);
-END;
-
--- 5) (Optioneel maar handig) geef nog niet ingedeelde vragen afwisselend een categorie
-DECLARE @Sci INT = (SELECT CategoryID FROM dbo.Categories WHERE Name=N'Science');
-DECLARE @World INT = (SELECT CategoryID FROM dbo.Categories WHERE Name=N'World');
-
-;WITH q AS (
-  SELECT QuestionID, ROW_NUMBER() OVER (ORDER BY QuestionID) AS rn
-  FROM dbo.QuizQuestions
-  WHERE CategoryID IS NULL
-)
-UPDATE qq
-SET CategoryID = CASE WHEN q.rn % 2 = 1 THEN @Sci ELSE @World END
-FROM dbo.QuizQuestions qq
-JOIN q ON q.QuestionID = qq.QuestionID;
-", con))
-            {
-                con.Open();
-                cmd.ExecuteNonQuery();
             }
         }
 
@@ -189,6 +127,16 @@ JOIN q ON q.QuestionID = qq.QuestionID;
             {
                 EndQuiz("Time's up!");
             }
+
+            _qTimeRemaining--;
+            lblQtimeValueAwol.Text = _qTimeRemaining.ToString();
+            if (_qTimeRemaining <= 3) lblQtimeValueAwol.ForeColor = Color.OrangeRed;
+            if (_qTimeRemaining <= 0)
+            {
+                NextQuestionOrFinish();
+                // ShowCurrentQuestion() reset de vraag-timer weer
+            }
+
         }
 
         private void EndQuiz(string reason)
@@ -239,6 +187,10 @@ JOIN q ON q.QuestionID = qq.QuestionID;
                 buttons[i].Text = $"{(char)('A' + i)}. " + options[i].Text;
                 buttons[i].Tag = options[i].IsCorrect; // bool
             }
+
+            _qTimeRemaining = QUESTION_TIME_LIMIT;
+            lblQtimeValueAwol.Text = _qTimeRemaining.ToString();
+            lblQtimeValueAwol.ForeColor = Color.Black;
         }
 
         private void AnswerSelected(Button btn)
@@ -306,15 +258,8 @@ JOIN q ON q.QuestionID = qq.QuestionID;
 
         private void btnScoresAwol_Click(object sender, EventArgs e)
         {
-            // Simpele scoreboard-weergave (Top 10) in MessageBox: Username - Score
-            var top = GetTop10Scores();
-            if (top.Count == 0)
-            {
-                MessageBox.Show("No scores yet.");
-                return;
-            }
-            var lines = top.Select((x, i) => $"{i + 1}. {x.Username} - {x.Score}");
-            MessageBox.Show(string.Join(Environment.NewLine, lines), "Top 10 Scores");
+            using (var f = new FormScoresAwol(connectionString))
+                f.ShowDialog(this);
         }
 
         // ===== DB =====
@@ -493,6 +438,29 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
             public int CategoryID { get; set; }
             public string Name { get; set; } = "";
             public override string ToString() => Name;
+        }
+
+        private void btnAdminAwol_Click(object sender, EventArgs e)
+        {
+            if (!IsCurrentUserAdmin())
+            {
+                MessageBox.Show("Admins only.");
+                return;
+            }
+            using (var f = new FormAdminAwol(connectionString))
+                f.ShowDialog(this);
+        }
+
+        private bool IsCurrentUserAdmin()
+        {
+            using (var con = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand("SELECT IsAdmin FROM dbo.Users WHERE Username=@u;", con))
+            {
+                cmd.Parameters.AddWithValue("@u", CurrentUsername);
+                con.Open();
+                var o = cmd.ExecuteScalar();
+                return o != null && Convert.ToBoolean(o);
+            }
         }
     }
 }

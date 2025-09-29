@@ -44,6 +44,10 @@
             this.clbCategoriesAwol = new System.Windows.Forms.CheckedListBox();
             this.btnSkipAwol = new System.Windows.Forms.Button();
             this.btnScoresAwol = new System.Windows.Forms.Button();
+            this.lblQtimeTextAwol = new System.Windows.Forms.Label();
+            this.lblQtimeValueAwol = new System.Windows.Forms.Label();
+            this.btnAdminAwol = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // btnStartAwol
@@ -117,11 +121,11 @@
             // lblTimeTextAwol
             // 
             this.lblTimeTextAwol.AutoSize = true;
-            this.lblTimeTextAwol.Location = new System.Drawing.Point(527, 257);
+            this.lblTimeTextAwol.Location = new System.Drawing.Point(413, 257);
             this.lblTimeTextAwol.Name = "lblTimeTextAwol";
-            this.lblTimeTextAwol.Size = new System.Drawing.Size(41, 16);
+            this.lblTimeTextAwol.Size = new System.Drawing.Size(175, 16);
             this.lblTimeTextAwol.TabIndex = 7;
-            this.lblTimeTextAwol.Text = "Time:";
+            this.lblTimeTextAwol.Text = "Time before the game ends:";
             // 
             // lblScoreTextAwol
             // 
@@ -135,7 +139,7 @@
             // lblTimeValueAwol
             // 
             this.lblTimeValueAwol.AutoSize = true;
-            this.lblTimeValueAwol.Location = new System.Drawing.Point(574, 257);
+            this.lblTimeValueAwol.Location = new System.Drawing.Point(594, 257);
             this.lblTimeValueAwol.Name = "lblTimeValueAwol";
             this.lblTimeValueAwol.Size = new System.Drawing.Size(14, 16);
             this.lblTimeValueAwol.TabIndex = 9;
@@ -182,11 +186,42 @@
             this.btnScoresAwol.UseVisualStyleBackColor = true;
             this.btnScoresAwol.Click += new System.EventHandler(this.btnScoresAwol_Click);
             // 
+            // lblQtimeTextAwol
+            // 
+            this.lblQtimeTextAwol.AutoSize = true;
+            this.lblQtimeTextAwol.Location = new System.Drawing.Point(265, 170);
+            this.lblQtimeTextAwol.Name = "lblQtimeTextAwol";
+            this.lblQtimeTextAwol.Size = new System.Drawing.Size(58, 16);
+            this.lblQtimeTextAwol.TabIndex = 14;
+            this.lblQtimeTextAwol.Text = "Q- Time:";
+            // 
+            // lblQtimeValueAwol
+            // 
+            this.lblQtimeValueAwol.AutoSize = true;
+            this.lblQtimeValueAwol.Location = new System.Drawing.Point(346, 170);
+            this.lblQtimeValueAwol.Name = "lblQtimeValueAwol";
+            this.lblQtimeValueAwol.Size = new System.Drawing.Size(21, 16);
+            this.lblQtimeValueAwol.TabIndex = 15;
+            this.lblQtimeValueAwol.Text = "10";
+            // 
+            // btnAdminAwol
+            // 
+            this.btnAdminAwol.Location = new System.Drawing.Point(482, 179);
+            this.btnAdminAwol.Name = "btnAdminAwol";
+            this.btnAdminAwol.Size = new System.Drawing.Size(75, 23);
+            this.btnAdminAwol.TabIndex = 16;
+            this.btnAdminAwol.Text = "Admin";
+            this.btnAdminAwol.UseVisualStyleBackColor = true;
+            this.btnAdminAwol.Click += new System.EventHandler(this.btnAdminAwol_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnAdminAwol);
+            this.Controls.Add(this.lblQtimeValueAwol);
+            this.Controls.Add(this.lblQtimeTextAwol);
             this.Controls.Add(this.btnScoresAwol);
             this.Controls.Add(this.btnSkipAwol);
             this.Controls.Add(this.clbCategoriesAwol);
@@ -226,5 +261,9 @@
         private System.Windows.Forms.CheckedListBox clbCategoriesAwol;
         private System.Windows.Forms.Button btnSkipAwol;
         private System.Windows.Forms.Button btnScoresAwol;
+        private System.Windows.Forms.Label lblQtimeTextAwol;
+        private System.Windows.Forms.Label lblQtimeValueAwol;
+        private System.Windows.Forms.Button btnAdminAwol;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

@@ -10,3 +10,5 @@ C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemeste
 C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.pdb
 C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.exe.config
 C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.Form2.resources
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.FormAdminAwol.resources
+C:\Users\akocp\OneDrive - ROC Ter AA\Game making\leerjaar 3\periode 1\quizemesterAwol\obj\Debug\quizemesterAwol.FormScoresAwol.resources
