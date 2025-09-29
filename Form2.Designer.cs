@@ -41,6 +41,9 @@
             this.lblTimeValueAwol = new System.Windows.Forms.Label();
             this.lblQuestionsAwol = new System.Windows.Forms.Label();
             this.gameTimerAwol = new System.Windows.Forms.Timer(this.components);
+            this.clbCategoriesAwol = new System.Windows.Forms.CheckedListBox();
+            this.btnSkipAwol = new System.Windows.Forms.Button();
+            this.btnScoresAwol = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnStartAwol
@@ -71,6 +74,7 @@
             this.btnBawol.TabIndex = 2;
             this.btnBawol.Text = "B";
             this.btnBawol.UseVisualStyleBackColor = true;
+            this.btnBawol.Click += new System.EventHandler(this.btnBawol_Click);
             // 
             // btnCawol
             // 
@@ -150,11 +154,42 @@
             // 
             this.gameTimerAwol.Tick += new System.EventHandler(this.gameTimerAwol_Tick);
             // 
+            // clbCategoriesAwol
+            // 
+            this.clbCategoriesAwol.FormattingEnabled = true;
+            this.clbCategoriesAwol.Location = new System.Drawing.Point(12, 113);
+            this.clbCategoriesAwol.Name = "clbCategoriesAwol";
+            this.clbCategoriesAwol.Size = new System.Drawing.Size(140, 89);
+            this.clbCategoriesAwol.TabIndex = 11;
+            // 
+            // btnSkipAwol
+            // 
+            this.btnSkipAwol.Location = new System.Drawing.Point(595, 94);
+            this.btnSkipAwol.Name = "btnSkipAwol";
+            this.btnSkipAwol.Size = new System.Drawing.Size(106, 46);
+            this.btnSkipAwol.TabIndex = 12;
+            this.btnSkipAwol.Text = "Skip (1x)";
+            this.btnSkipAwol.UseVisualStyleBackColor = true;
+            this.btnSkipAwol.Click += new System.EventHandler(this.btnSkipAwol_Click);
+            // 
+            // btnScoresAwol
+            // 
+            this.btnScoresAwol.Location = new System.Drawing.Point(595, 179);
+            this.btnScoresAwol.Name = "btnScoresAwol";
+            this.btnScoresAwol.Size = new System.Drawing.Size(106, 42);
+            this.btnScoresAwol.TabIndex = 13;
+            this.btnScoresAwol.Text = "Scoreboard";
+            this.btnScoresAwol.UseVisualStyleBackColor = true;
+            this.btnScoresAwol.Click += new System.EventHandler(this.btnScoresAwol_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnScoresAwol);
+            this.Controls.Add(this.btnSkipAwol);
+            this.Controls.Add(this.clbCategoriesAwol);
             this.Controls.Add(this.lblQuestionsAwol);
             this.Controls.Add(this.lblTimeValueAwol);
             this.Controls.Add(this.lblScoreTextAwol);
@@ -188,5 +223,8 @@
         private System.Windows.Forms.Label lblTimeValueAwol;
         private System.Windows.Forms.Label lblQuestionsAwol;
         private System.Windows.Forms.Timer gameTimerAwol;
+        private System.Windows.Forms.CheckedListBox clbCategoriesAwol;
+        private System.Windows.Forms.Button btnSkipAwol;
+        private System.Windows.Forms.Button btnScoresAwol;
     }
 }

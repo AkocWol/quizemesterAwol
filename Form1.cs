@@ -81,8 +81,14 @@ namespace quizemesterAwol
                 if (count > 0)
                 {
                     lblMessageAwol.Text = "Login success!";
-                    this.Hide(); // verberg Form1
-                    Form2 dashboard = new Form2(); // open nieuwe form
+
+                    var dashboard = new Form2
+                    {
+                        CurrentUsername = txtUsernameAwol.Text  // <-- geef username mee
+                    };
+
+                    this.Hide();                                // verberg Form1
+                    dashboard.FormClosed += (s, args) => this.Close(); // sluit app als Form2 sluit
                     dashboard.Show();
                 }
                 else
