@@ -35,6 +35,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnSaveUsersAwol = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnAddQuestionsAwol = new System.Windows.Forms.Button();
+            this.btnDeleteQuestionAwol = new System.Windows.Forms.Button();
+            this.btnDeleteUserAwol = new System.Windows.Forms.Button();
             this.tabControlAwol.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuestionsAwol)).BeginInit();
@@ -54,6 +57,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnDeleteQuestionAwol);
+            this.tabPage1.Controls.Add(this.btnAddQuestionsAwol);
             this.tabPage1.Controls.Add(this.btnSaveQuestionsAwol);
             this.tabPage1.Controls.Add(this.dgvQuestionsAwol);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
@@ -66,9 +71,9 @@
             // 
             // btnSaveQuestionsAwol
             // 
-            this.btnSaveQuestionsAwol.Location = new System.Drawing.Point(637, 6);
+            this.btnSaveQuestionsAwol.Location = new System.Drawing.Point(654, 6);
             this.btnSaveQuestionsAwol.Name = "btnSaveQuestionsAwol";
-            this.btnSaveQuestionsAwol.Size = new System.Drawing.Size(125, 50);
+            this.btnSaveQuestionsAwol.Size = new System.Drawing.Size(108, 50);
             this.btnSaveQuestionsAwol.TabIndex = 1;
             this.btnSaveQuestionsAwol.Text = "Save";
             this.btnSaveQuestionsAwol.UseVisualStyleBackColor = true;
@@ -81,11 +86,12 @@
             this.dgvQuestionsAwol.Name = "dgvQuestionsAwol";
             this.dgvQuestionsAwol.RowHeadersWidth = 51;
             this.dgvQuestionsAwol.RowTemplate.Height = 24;
-            this.dgvQuestionsAwol.Size = new System.Drawing.Size(625, 385);
+            this.dgvQuestionsAwol.Size = new System.Drawing.Size(642, 385);
             this.dgvQuestionsAwol.TabIndex = 0;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnDeleteUserAwol);
             this.tabPage2.Controls.Add(this.btnSaveUsersAwol);
             this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
@@ -98,9 +104,9 @@
             // 
             // btnSaveUsersAwol
             // 
-            this.btnSaveUsersAwol.Location = new System.Drawing.Point(637, 6);
+            this.btnSaveUsersAwol.Location = new System.Drawing.Point(654, 6);
             this.btnSaveUsersAwol.Name = "btnSaveUsersAwol";
-            this.btnSaveUsersAwol.Size = new System.Drawing.Size(125, 50);
+            this.btnSaveUsersAwol.Size = new System.Drawing.Size(108, 50);
             this.btnSaveUsersAwol.TabIndex = 2;
             this.btnSaveUsersAwol.Text = "Save";
             this.btnSaveUsersAwol.UseVisualStyleBackColor = true;
@@ -113,8 +119,38 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(625, 385);
+            this.dataGridView1.Size = new System.Drawing.Size(642, 385);
             this.dataGridView1.TabIndex = 1;
+            // 
+            // btnAddQuestionsAwol
+            // 
+            this.btnAddQuestionsAwol.Location = new System.Drawing.Point(654, 62);
+            this.btnAddQuestionsAwol.Name = "btnAddQuestionsAwol";
+            this.btnAddQuestionsAwol.Size = new System.Drawing.Size(108, 50);
+            this.btnAddQuestionsAwol.TabIndex = 2;
+            this.btnAddQuestionsAwol.Text = "Add";
+            this.btnAddQuestionsAwol.UseVisualStyleBackColor = true;
+            this.btnAddQuestionsAwol.Click += new System.EventHandler(this.btnAddQuestionsAwol_Click);
+            // 
+            // btnDeleteQuestionAwol
+            // 
+            this.btnDeleteQuestionAwol.Location = new System.Drawing.Point(654, 118);
+            this.btnDeleteQuestionAwol.Name = "btnDeleteQuestionAwol";
+            this.btnDeleteQuestionAwol.Size = new System.Drawing.Size(108, 50);
+            this.btnDeleteQuestionAwol.TabIndex = 3;
+            this.btnDeleteQuestionAwol.Text = "Delete";
+            this.btnDeleteQuestionAwol.UseVisualStyleBackColor = true;
+            this.btnDeleteQuestionAwol.Click += new System.EventHandler(this.btnDeleteQuestionAwol_Click);
+            // 
+            // btnDeleteUserAwol
+            // 
+            this.btnDeleteUserAwol.Location = new System.Drawing.Point(654, 62);
+            this.btnDeleteUserAwol.Name = "btnDeleteUserAwol";
+            this.btnDeleteUserAwol.Size = new System.Drawing.Size(108, 50);
+            this.btnDeleteUserAwol.TabIndex = 3;
+            this.btnDeleteUserAwol.Text = "Delete";
+            this.btnDeleteUserAwol.UseVisualStyleBackColor = true;
+            this.btnDeleteUserAwol.Click += new System.EventHandler(this.btnDeleteUserAwol_Click);
             // 
             // FormAdminAwol
             // 
@@ -143,5 +179,8 @@
         private System.Windows.Forms.Button btnSaveQuestionsAwol;
         private System.Windows.Forms.Button btnSaveUsersAwol;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnDeleteQuestionAwol;
+        private System.Windows.Forms.Button btnAddQuestionsAwol;
+        private System.Windows.Forms.Button btnDeleteUserAwol;
     }
 }
