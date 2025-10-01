@@ -38,7 +38,7 @@ namespace quizemesterAwol
         }
 
         // ===== Lifecycle =====
-        private void Form2_Load(object sender, EventArgs e)
+        private void FormQuizAwol_Load(object sender, EventArgs e)
         {
             try
             {
