@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormLoginAwol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormLoginAwol.Designer.cs">
+      <DependentUpon>FormLoginAwol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="FormQuizAwol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="FormQuizAwol.Designer.cs">
+      <DependentUpon>FormQuizAwol.cs</DependentUpon>
     </Compile>
     <Compile Include="FormAdminAwol.cs">
       <SubType>Form</SubType>
@@ -72,11 +72,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormLoginAwol.resx">
+      <DependentUpon>FormLoginAwol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="FormQuizAwol.resx">
+      <DependentUpon>FormQuizAwol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAdminAwol.resx">
       <DependentUpon>FormAdminAwol.cs</DependentUpon>

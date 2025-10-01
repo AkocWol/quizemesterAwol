@@ -1,6 +1,6 @@
 ﻿namespace quizemesterAwol
 {
-    partial class Form1
+    partial class FormLoginAwol
     {
         /// <summary>
         /// Required designer variable.

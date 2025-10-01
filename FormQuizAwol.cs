@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace quizemesterAwol
 {
-    public partial class Form2 : Form
+    public partial class FormQuizAwol : Form
     {
         // ===== Config =====
         private readonly string connectionString =
@@ -32,7 +32,7 @@ namespace quizemesterAwol
 
         public string CurrentUsername { get; set; } = "Unknown";   // Zet dit vanuit Form1
 
-        public Form2()
+        public FormQuizAwol()
         {
             InitializeComponent();
         }

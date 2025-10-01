@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace quizemesterAwol
 {
-    public partial class Form1 : Form
+    public partial class FormLoginAwol : Form
     {
         // Connection string naar jouw database
         string connectionString = @"Server=localhost\SQLEXPRESS;Database=quizemesterAwol;Trusted_Connection=True;";
 
-        public Form1()
+        public FormLoginAwol()
         {
             InitializeComponent();
         }
@@ -82,7 +82,7 @@ namespace quizemesterAwol
                 {
                     lblMessageAwol.Text = "Login success!";
 
-                    var dashboard = new Form2
+                    var dashboard = new FormQuizAwol
                     {
                         CurrentUsername = txtUsernameAwol.Text  // <-- geef username mee
                     };
