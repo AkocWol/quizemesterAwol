@@ -48,11 +48,14 @@
             this.lblQtimeValueAwol = new System.Windows.Forms.Label();
             this.btnAdminAwol = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.chkAdminModeAwol = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblRoleAwol = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnStartAwol
             // 
-            this.btnStartAwol.Location = new System.Drawing.Point(304, 94);
+            this.btnStartAwol.Location = new System.Drawing.Point(271, 75);
             this.btnStartAwol.Name = "btnStartAwol";
             this.btnStartAwol.Size = new System.Drawing.Size(188, 51);
             this.btnStartAwol.TabIndex = 0;
@@ -62,7 +65,7 @@
             // 
             // btnAawol
             // 
-            this.btnAawol.Location = new System.Drawing.Point(12, 322);
+            this.btnAawol.Location = new System.Drawing.Point(15, 322);
             this.btnAawol.Name = "btnAawol";
             this.btnAawol.Size = new System.Drawing.Size(170, 51);
             this.btnAawol.TabIndex = 1;
@@ -103,7 +106,7 @@
             // lblTitleAwol
             // 
             this.lblTitleAwol.AutoSize = true;
-            this.lblTitleAwol.Location = new System.Drawing.Point(346, 69);
+            this.lblTitleAwol.Location = new System.Drawing.Point(311, 56);
             this.lblTitleAwol.Name = "lblTitleAwol";
             this.lblTitleAwol.Size = new System.Drawing.Size(107, 16);
             this.lblTitleAwol.TabIndex = 5;
@@ -112,7 +115,7 @@
             // lblScoreValueAwol
             // 
             this.lblScoreValueAwol.AutoSize = true;
-            this.lblScoreValueAwol.Location = new System.Drawing.Point(265, 257);
+            this.lblScoreValueAwol.Location = new System.Drawing.Point(191, 273);
             this.lblScoreValueAwol.Name = "lblScoreValueAwol";
             this.lblScoreValueAwol.Size = new System.Drawing.Size(14, 16);
             this.lblScoreValueAwol.TabIndex = 6;
@@ -121,7 +124,7 @@
             // lblTimeTextAwol
             // 
             this.lblTimeTextAwol.AutoSize = true;
-            this.lblTimeTextAwol.Location = new System.Drawing.Point(413, 257);
+            this.lblTimeTextAwol.Location = new System.Drawing.Point(311, 273);
             this.lblTimeTextAwol.Name = "lblTimeTextAwol";
             this.lblTimeTextAwol.Size = new System.Drawing.Size(175, 16);
             this.lblTimeTextAwol.TabIndex = 7;
@@ -130,7 +133,7 @@
             // lblScoreTextAwol
             // 
             this.lblScoreTextAwol.AutoSize = true;
-            this.lblScoreTextAwol.Location = new System.Drawing.Point(213, 257);
+            this.lblScoreTextAwol.Location = new System.Drawing.Point(139, 273);
             this.lblScoreTextAwol.Name = "lblScoreTextAwol";
             this.lblScoreTextAwol.Size = new System.Drawing.Size(46, 16);
             this.lblScoreTextAwol.TabIndex = 8;
@@ -139,7 +142,7 @@
             // lblTimeValueAwol
             // 
             this.lblTimeValueAwol.AutoSize = true;
-            this.lblTimeValueAwol.Location = new System.Drawing.Point(594, 257);
+            this.lblTimeValueAwol.Location = new System.Drawing.Point(494, 273);
             this.lblTimeValueAwol.Name = "lblTimeValueAwol";
             this.lblTimeValueAwol.Size = new System.Drawing.Size(14, 16);
             this.lblTimeValueAwol.TabIndex = 9;
@@ -148,7 +151,7 @@
             // lblQuestionsAwol
             // 
             this.lblQuestionsAwol.AutoSize = true;
-            this.lblQuestionsAwol.Location = new System.Drawing.Point(365, 205);
+            this.lblQuestionsAwol.Location = new System.Drawing.Point(330, 201);
             this.lblQuestionsAwol.Name = "lblQuestionsAwol";
             this.lblQuestionsAwol.Size = new System.Drawing.Size(67, 16);
             this.lblQuestionsAwol.TabIndex = 10;
@@ -161,14 +164,14 @@
             // clbCategoriesAwol
             // 
             this.clbCategoriesAwol.FormattingEnabled = true;
-            this.clbCategoriesAwol.Location = new System.Drawing.Point(12, 113);
+            this.clbCategoriesAwol.Location = new System.Drawing.Point(34, 75);
             this.clbCategoriesAwol.Name = "clbCategoriesAwol";
             this.clbCategoriesAwol.Size = new System.Drawing.Size(140, 89);
             this.clbCategoriesAwol.TabIndex = 11;
             // 
             // btnSkipAwol
             // 
-            this.btnSkipAwol.Location = new System.Drawing.Point(595, 94);
+            this.btnSkipAwol.Location = new System.Drawing.Point(519, 138);
             this.btnSkipAwol.Name = "btnSkipAwol";
             this.btnSkipAwol.Size = new System.Drawing.Size(106, 46);
             this.btnSkipAwol.TabIndex = 12;
@@ -178,9 +181,9 @@
             // 
             // btnScoresAwol
             // 
-            this.btnScoresAwol.Location = new System.Drawing.Point(595, 179);
+            this.btnScoresAwol.Location = new System.Drawing.Point(519, 190);
             this.btnScoresAwol.Name = "btnScoresAwol";
-            this.btnScoresAwol.Size = new System.Drawing.Size(106, 42);
+            this.btnScoresAwol.Size = new System.Drawing.Size(106, 46);
             this.btnScoresAwol.TabIndex = 13;
             this.btnScoresAwol.Text = "Scoreboard";
             this.btnScoresAwol.UseVisualStyleBackColor = true;
@@ -189,7 +192,7 @@
             // lblQtimeTextAwol
             // 
             this.lblQtimeTextAwol.AutoSize = true;
-            this.lblQtimeTextAwol.Location = new System.Drawing.Point(265, 170);
+            this.lblQtimeTextAwol.Location = new System.Drawing.Point(213, 148);
             this.lblQtimeTextAwol.Name = "lblQtimeTextAwol";
             this.lblQtimeTextAwol.Size = new System.Drawing.Size(58, 16);
             this.lblQtimeTextAwol.TabIndex = 14;
@@ -198,7 +201,7 @@
             // lblQtimeValueAwol
             // 
             this.lblQtimeValueAwol.AutoSize = true;
-            this.lblQtimeValueAwol.Location = new System.Drawing.Point(346, 170);
+            this.lblQtimeValueAwol.Location = new System.Drawing.Point(277, 148);
             this.lblQtimeValueAwol.Name = "lblQtimeValueAwol";
             this.lblQtimeValueAwol.Size = new System.Drawing.Size(21, 16);
             this.lblQtimeValueAwol.TabIndex = 15;
@@ -206,19 +209,51 @@
             // 
             // btnAdminAwol
             // 
-            this.btnAdminAwol.Location = new System.Drawing.Point(482, 179);
+            this.btnAdminAwol.Location = new System.Drawing.Point(631, 138);
             this.btnAdminAwol.Name = "btnAdminAwol";
-            this.btnAdminAwol.Size = new System.Drawing.Size(75, 23);
+            this.btnAdminAwol.Size = new System.Drawing.Size(105, 46);
             this.btnAdminAwol.TabIndex = 16;
             this.btnAdminAwol.Text = "Admin";
             this.btnAdminAwol.UseVisualStyleBackColor = true;
             this.btnAdminAwol.Click += new System.EventHandler(this.btnAdminAwol_Click);
+            // 
+            // chkAdminModeAwol
+            // 
+            this.chkAdminModeAwol.AutoSize = true;
+            this.chkAdminModeAwol.Location = new System.Drawing.Point(552, 29);
+            this.chkAdminModeAwol.Name = "chkAdminModeAwol";
+            this.chkAdminModeAwol.Size = new System.Drawing.Size(105, 20);
+            this.chkAdminModeAwol.TabIndex = 17;
+            this.chkAdminModeAwol.Text = "Admin mode";
+            this.chkAdminModeAwol.UseVisualStyleBackColor = true;
+            this.chkAdminModeAwol.CheckedChanged += new System.EventHandler(this.chkAdminModeAwol_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(77, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 16);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Role:";
+            // 
+            // lblRoleAwol
+            // 
+            this.lblRoleAwol.AutoSize = true;
+            this.lblRoleAwol.Location = new System.Drawing.Point(122, 29);
+            this.lblRoleAwol.Name = "lblRoleAwol";
+            this.lblRoleAwol.Size = new System.Drawing.Size(33, 16);
+            this.lblRoleAwol.TabIndex = 19;
+            this.lblRoleAwol.Text = "user";
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblRoleAwol);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.chkAdminModeAwol);
             this.Controls.Add(this.btnAdminAwol);
             this.Controls.Add(this.lblQtimeValueAwol);
             this.Controls.Add(this.lblQtimeTextAwol);
@@ -265,5 +300,8 @@
         private System.Windows.Forms.Label lblQtimeValueAwol;
         private System.Windows.Forms.Button btnAdminAwol;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.CheckBox chkAdminModeAwol;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblRoleAwol;
     }
 }

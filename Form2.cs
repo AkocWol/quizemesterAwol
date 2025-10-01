@@ -25,6 +25,7 @@ namespace quizemesterAwol
         private int _timeRemaining = 60;
         private bool _quizRunning = false;
         private bool _skipUsed = false;
+        private bool _adminOverride = false;  // sessie-toggle
         private List<int> _selectedCategoryIds = new List<int>(); // leeg = General (alles)
         private const int QUESTION_TIME_LIMIT = 10;
         private int _qTimeRemaining = QUESTION_TIME_LIMIT;
@@ -50,6 +51,10 @@ namespace quizemesterAwol
                 MessageBox.Show("Startup error:\n" + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            _adminOverride = false;
+            if (chkAdminModeAwol != null) chkAdminModeAwol.Checked = false;
+            UpdateRoleLabel();
         }
 
 
@@ -442,7 +447,7 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
 
         private void btnAdminAwol_Click(object sender, EventArgs e)
         {
-            if (!IsCurrentUserAdmin())
+            if (!IsAdminSession())   // <-- gebruik override + DB
             {
                 MessageBox.Show("Admins only.");
                 return;
@@ -461,6 +466,25 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
                 var o = cmd.ExecuteScalar();
                 return o != null && Convert.ToBoolean(o);
             }
+        }
+
+        private bool IsAdminSession()
+        {
+            return _adminOverride || IsCurrentUserAdmin(); // override wint van DB
+        }
+
+        private void UpdateRoleLabel()
+        {
+            if (lblRoleAwol != null)
+                lblRoleAwol.Text = IsAdminSession()
+                    ? (_adminOverride ? "Role: Admin (override)" : "Role: Admin")
+                    : "Role: Player";
+        }
+
+        private void chkAdminModeAwol_CheckedChanged(object sender, EventArgs e)
+        {
+            _adminOverride = chkAdminModeAwol.Checked;
+            UpdateRoleLabel();
         }
     }
 }

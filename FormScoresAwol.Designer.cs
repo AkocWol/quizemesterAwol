@@ -37,16 +37,16 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 28);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(447, 332);
+            this.dataGridView1.Size = new System.Drawing.Size(653, 426);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnRefreshAwol
             // 
-            this.btnRefreshAwol.Location = new System.Drawing.Point(481, 49);
+            this.btnRefreshAwol.Location = new System.Drawing.Point(671, 12);
             this.btnRefreshAwol.Name = "btnRefreshAwol";
             this.btnRefreshAwol.Size = new System.Drawing.Size(105, 38);
             this.btnRefreshAwol.TabIndex = 1;
