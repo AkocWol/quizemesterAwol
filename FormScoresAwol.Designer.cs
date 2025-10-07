@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormScoresAwol));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnRefreshAwol = new System.Windows.Forms.Button();
@@ -41,16 +42,17 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(653, 426);
+            this.dataGridView1.Size = new System.Drawing.Size(662, 426);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnRefreshAwol
             // 
-            this.btnRefreshAwol.Location = new System.Drawing.Point(671, 12);
+            this.btnRefreshAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefreshAwol.BackgroundImage")));
+            this.btnRefreshAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefreshAwol.Location = new System.Drawing.Point(680, 12);
             this.btnRefreshAwol.Name = "btnRefreshAwol";
-            this.btnRefreshAwol.Size = new System.Drawing.Size(105, 38);
+            this.btnRefreshAwol.Size = new System.Drawing.Size(108, 94);
             this.btnRefreshAwol.TabIndex = 1;
-            this.btnRefreshAwol.Text = "Refresh";
             this.btnRefreshAwol.UseVisualStyleBackColor = true;
             this.btnRefreshAwol.Click += new System.EventHandler(this.btnRefreshAwol_Click);
             // 

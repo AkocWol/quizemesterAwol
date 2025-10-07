@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuizAwol));
             this.btnStartAwol = new System.Windows.Forms.Button();
             this.btnAawol = new System.Windows.Forms.Button();
             this.btnBawol = new System.Windows.Forms.Button();
@@ -55,11 +56,12 @@
             // 
             // btnStartAwol
             // 
-            this.btnStartAwol.Location = new System.Drawing.Point(271, 75);
+            this.btnStartAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnStartAwol.BackgroundImage")));
+            this.btnStartAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnStartAwol.Location = new System.Drawing.Point(310, 90);
             this.btnStartAwol.Name = "btnStartAwol";
-            this.btnStartAwol.Size = new System.Drawing.Size(188, 51);
+            this.btnStartAwol.Size = new System.Drawing.Size(108, 94);
             this.btnStartAwol.TabIndex = 0;
-            this.btnStartAwol.Text = "Start";
             this.btnStartAwol.UseVisualStyleBackColor = true;
             this.btnStartAwol.Click += new System.EventHandler(this.btnStartAwol_Click);
             // 
@@ -133,7 +135,7 @@
             // lblScoreTextAwol
             // 
             this.lblScoreTextAwol.AutoSize = true;
-            this.lblScoreTextAwol.Location = new System.Drawing.Point(139, 273);
+            this.lblScoreTextAwol.Location = new System.Drawing.Point(122, 268);
             this.lblScoreTextAwol.Name = "lblScoreTextAwol";
             this.lblScoreTextAwol.Size = new System.Drawing.Size(46, 16);
             this.lblScoreTextAwol.TabIndex = 8;
@@ -171,21 +173,23 @@
             // 
             // btnSkipAwol
             // 
-            this.btnSkipAwol.Location = new System.Drawing.Point(519, 138);
+            this.btnSkipAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSkipAwol.BackgroundImage")));
+            this.btnSkipAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSkipAwol.Location = new System.Drawing.Point(545, 90);
             this.btnSkipAwol.Name = "btnSkipAwol";
-            this.btnSkipAwol.Size = new System.Drawing.Size(106, 46);
+            this.btnSkipAwol.Size = new System.Drawing.Size(108, 94);
             this.btnSkipAwol.TabIndex = 12;
-            this.btnSkipAwol.Text = "Skip (1x)";
             this.btnSkipAwol.UseVisualStyleBackColor = true;
             this.btnSkipAwol.Click += new System.EventHandler(this.btnSkipAwol_Click);
             // 
             // btnScoresAwol
             // 
-            this.btnScoresAwol.Location = new System.Drawing.Point(519, 190);
+            this.btnScoresAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScoresAwol.BackgroundImage")));
+            this.btnScoresAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnScoresAwol.Location = new System.Drawing.Point(659, 90);
             this.btnScoresAwol.Name = "btnScoresAwol";
-            this.btnScoresAwol.Size = new System.Drawing.Size(106, 46);
+            this.btnScoresAwol.Size = new System.Drawing.Size(108, 94);
             this.btnScoresAwol.TabIndex = 13;
-            this.btnScoresAwol.Text = "Scoreboard";
             this.btnScoresAwol.UseVisualStyleBackColor = true;
             this.btnScoresAwol.Click += new System.EventHandler(this.btnScoresAwol_Click);
             // 
@@ -209,18 +213,19 @@
             // 
             // btnAdminAwol
             // 
-            this.btnAdminAwol.Location = new System.Drawing.Point(631, 138);
+            this.btnAdminAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAdminAwol.BackgroundImage")));
+            this.btnAdminAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAdminAwol.Location = new System.Drawing.Point(659, 190);
             this.btnAdminAwol.Name = "btnAdminAwol";
-            this.btnAdminAwol.Size = new System.Drawing.Size(105, 46);
+            this.btnAdminAwol.Size = new System.Drawing.Size(108, 94);
             this.btnAdminAwol.TabIndex = 16;
-            this.btnAdminAwol.Text = "Admin";
             this.btnAdminAwol.UseVisualStyleBackColor = true;
             this.btnAdminAwol.Click += new System.EventHandler(this.btnAdminAwol_Click);
             // 
             // chkAdminModeAwol
             // 
             this.chkAdminModeAwol.AutoSize = true;
-            this.chkAdminModeAwol.Location = new System.Drawing.Point(552, 29);
+            this.chkAdminModeAwol.Location = new System.Drawing.Point(548, 52);
             this.chkAdminModeAwol.Name = "chkAdminModeAwol";
             this.chkAdminModeAwol.Size = new System.Drawing.Size(105, 20);
             this.chkAdminModeAwol.TabIndex = 17;
@@ -246,11 +251,11 @@
             this.lblRoleAwol.TabIndex = 19;
             this.lblRoleAwol.Text = "user";
             // 
-            // Form2
+            // FormQuizAwol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1295, 523);
             this.Controls.Add(this.lblRoleAwol);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chkAdminModeAwol);
@@ -271,8 +276,8 @@
             this.Controls.Add(this.btnBawol);
             this.Controls.Add(this.btnAawol);
             this.Controls.Add(this.btnStartAwol);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "FormQuizAwol";
+            this.Text = "FormQuizAwol";
             this.Load += new System.EventHandler(this.FormQuizAwol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

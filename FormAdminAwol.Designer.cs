@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAdminAwol));
             this.tabControlAwol = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnDeleteQuestionAwol = new System.Windows.Forms.Button();
+            this.btnAddQuestionsAwol = new System.Windows.Forms.Button();
             this.btnSaveQuestionsAwol = new System.Windows.Forms.Button();
             this.dgvQuestionsAwol = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnDeleteUserAwol = new System.Windows.Forms.Button();
             this.btnSaveUsersAwol = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnAddQuestionsAwol = new System.Windows.Forms.Button();
-            this.btnDeleteQuestionAwol = new System.Windows.Forms.Button();
-            this.btnDeleteUserAwol = new System.Windows.Forms.Button();
             this.tabControlAwol.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuestionsAwol)).BeginInit();
@@ -69,14 +70,38 @@
             this.tabPage1.Text = "Questions";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnDeleteQuestionAwol
+            // 
+            this.btnDeleteQuestionAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDeleteQuestionAwol.BackgroundImage")));
+            this.btnDeleteQuestionAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDeleteQuestionAwol.Location = new System.Drawing.Point(654, 269);
+            this.btnDeleteQuestionAwol.Name = "btnDeleteQuestionAwol";
+            this.btnDeleteQuestionAwol.Size = new System.Drawing.Size(108, 94);
+            this.btnDeleteQuestionAwol.TabIndex = 3;
+            this.btnDeleteQuestionAwol.UseVisualStyleBackColor = true;
+            this.btnDeleteQuestionAwol.Click += new System.EventHandler(this.btnDeleteQuestionAwol_Click);
+            // 
+            // btnAddQuestionsAwol
+            // 
+            this.btnAddQuestionsAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddQuestionsAwol.BackgroundImage")));
+            this.btnAddQuestionsAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddQuestionsAwol.Location = new System.Drawing.Point(654, 138);
+            this.btnAddQuestionsAwol.Name = "btnAddQuestionsAwol";
+            this.btnAddQuestionsAwol.Size = new System.Drawing.Size(108, 94);
+            this.btnAddQuestionsAwol.TabIndex = 2;
+            this.btnAddQuestionsAwol.UseVisualStyleBackColor = true;
+            this.btnAddQuestionsAwol.Click += new System.EventHandler(this.btnAddQuestionsAwol_Click);
+            // 
             // btnSaveQuestionsAwol
             // 
+            this.btnSaveQuestionsAwol.BackColor = System.Drawing.Color.Transparent;
+            this.btnSaveQuestionsAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSaveQuestionsAwol.BackgroundImage")));
+            this.btnSaveQuestionsAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSaveQuestionsAwol.Location = new System.Drawing.Point(654, 6);
             this.btnSaveQuestionsAwol.Name = "btnSaveQuestionsAwol";
-            this.btnSaveQuestionsAwol.Size = new System.Drawing.Size(108, 50);
+            this.btnSaveQuestionsAwol.Size = new System.Drawing.Size(108, 94);
             this.btnSaveQuestionsAwol.TabIndex = 1;
-            this.btnSaveQuestionsAwol.Text = "Save";
-            this.btnSaveQuestionsAwol.UseVisualStyleBackColor = true;
+            this.btnSaveQuestionsAwol.UseVisualStyleBackColor = false;
             this.btnSaveQuestionsAwol.Click += new System.EventHandler(this.btnSaveQuestionsAwol_Click);
             // 
             // dgvQuestionsAwol
@@ -102,13 +127,25 @@
             this.tabPage2.Text = "Users";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnDeleteUserAwol
+            // 
+            this.btnDeleteUserAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDeleteUserAwol.BackgroundImage")));
+            this.btnDeleteUserAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDeleteUserAwol.Location = new System.Drawing.Point(654, 138);
+            this.btnDeleteUserAwol.Name = "btnDeleteUserAwol";
+            this.btnDeleteUserAwol.Size = new System.Drawing.Size(108, 94);
+            this.btnDeleteUserAwol.TabIndex = 3;
+            this.btnDeleteUserAwol.UseVisualStyleBackColor = true;
+            this.btnDeleteUserAwol.Click += new System.EventHandler(this.btnDeleteUserAwol_Click);
+            // 
             // btnSaveUsersAwol
             // 
+            this.btnSaveUsersAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSaveUsersAwol.BackgroundImage")));
+            this.btnSaveUsersAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSaveUsersAwol.Location = new System.Drawing.Point(654, 6);
             this.btnSaveUsersAwol.Name = "btnSaveUsersAwol";
-            this.btnSaveUsersAwol.Size = new System.Drawing.Size(108, 50);
+            this.btnSaveUsersAwol.Size = new System.Drawing.Size(108, 94);
             this.btnSaveUsersAwol.TabIndex = 2;
-            this.btnSaveUsersAwol.Text = "Save";
             this.btnSaveUsersAwol.UseVisualStyleBackColor = true;
             this.btnSaveUsersAwol.Click += new System.EventHandler(this.btnSaveUsersAwol_Click);
             // 
@@ -121,36 +158,6 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(642, 385);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // btnAddQuestionsAwol
-            // 
-            this.btnAddQuestionsAwol.Location = new System.Drawing.Point(654, 62);
-            this.btnAddQuestionsAwol.Name = "btnAddQuestionsAwol";
-            this.btnAddQuestionsAwol.Size = new System.Drawing.Size(108, 50);
-            this.btnAddQuestionsAwol.TabIndex = 2;
-            this.btnAddQuestionsAwol.Text = "Add";
-            this.btnAddQuestionsAwol.UseVisualStyleBackColor = true;
-            this.btnAddQuestionsAwol.Click += new System.EventHandler(this.btnAddQuestionsAwol_Click);
-            // 
-            // btnDeleteQuestionAwol
-            // 
-            this.btnDeleteQuestionAwol.Location = new System.Drawing.Point(654, 118);
-            this.btnDeleteQuestionAwol.Name = "btnDeleteQuestionAwol";
-            this.btnDeleteQuestionAwol.Size = new System.Drawing.Size(108, 50);
-            this.btnDeleteQuestionAwol.TabIndex = 3;
-            this.btnDeleteQuestionAwol.Text = "Delete";
-            this.btnDeleteQuestionAwol.UseVisualStyleBackColor = true;
-            this.btnDeleteQuestionAwol.Click += new System.EventHandler(this.btnDeleteQuestionAwol_Click);
-            // 
-            // btnDeleteUserAwol
-            // 
-            this.btnDeleteUserAwol.Location = new System.Drawing.Point(654, 62);
-            this.btnDeleteUserAwol.Name = "btnDeleteUserAwol";
-            this.btnDeleteUserAwol.Size = new System.Drawing.Size(108, 50);
-            this.btnDeleteUserAwol.TabIndex = 3;
-            this.btnDeleteUserAwol.Text = "Delete";
-            this.btnDeleteUserAwol.UseVisualStyleBackColor = true;
-            this.btnDeleteUserAwol.Click += new System.EventHandler(this.btnDeleteUserAwol_Click);
             // 
             // FormAdminAwol
             // 

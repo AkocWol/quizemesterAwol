@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLoginAwol));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUsernameAwol = new System.Windows.Forms.TextBox();
@@ -40,7 +41,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(186, 189);
+            this.label1.Location = new System.Drawing.Point(40, 129);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 16);
             this.label1.TabIndex = 0;
@@ -49,7 +50,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(186, 124);
+            this.label2.Location = new System.Drawing.Point(37, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 16);
             this.label2.TabIndex = 1;
@@ -57,34 +58,36 @@
             // 
             // txtUsernameAwol
             // 
-            this.txtUsernameAwol.Location = new System.Drawing.Point(293, 124);
+            this.txtUsernameAwol.Location = new System.Drawing.Point(136, 68);
             this.txtUsernameAwol.Name = "txtUsernameAwol";
             this.txtUsernameAwol.Size = new System.Drawing.Size(100, 22);
             this.txtUsernameAwol.TabIndex = 3;
             // 
             // btnLoginAwol
             // 
-            this.btnLoginAwol.Location = new System.Drawing.Point(200, 255);
+            this.btnLoginAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLoginAwol.BackgroundImage")));
+            this.btnLoginAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLoginAwol.Location = new System.Drawing.Point(40, 203);
             this.btnLoginAwol.Name = "btnLoginAwol";
-            this.btnLoginAwol.Size = new System.Drawing.Size(75, 23);
+            this.btnLoginAwol.Size = new System.Drawing.Size(108, 94);
             this.btnLoginAwol.TabIndex = 4;
-            this.btnLoginAwol.Text = "Login";
             this.btnLoginAwol.UseVisualStyleBackColor = true;
             this.btnLoginAwol.Click += new System.EventHandler(this.btnLoginAwol_Click);
             // 
             // btnRegisterAwol
             // 
-            this.btnRegisterAwol.Location = new System.Drawing.Point(318, 255);
+            this.btnRegisterAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRegisterAwol.BackgroundImage")));
+            this.btnRegisterAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRegisterAwol.Location = new System.Drawing.Point(166, 203);
             this.btnRegisterAwol.Name = "btnRegisterAwol";
-            this.btnRegisterAwol.Size = new System.Drawing.Size(75, 23);
+            this.btnRegisterAwol.Size = new System.Drawing.Size(108, 94);
             this.btnRegisterAwol.TabIndex = 5;
-            this.btnRegisterAwol.Text = "Register";
             this.btnRegisterAwol.UseVisualStyleBackColor = true;
             this.btnRegisterAwol.Click += new System.EventHandler(this.btnRegisterAwol_Click);
             // 
             // txtPasswordAwol
             // 
-            this.txtPasswordAwol.Location = new System.Drawing.Point(293, 186);
+            this.txtPasswordAwol.Location = new System.Drawing.Point(136, 129);
             this.txtPasswordAwol.Name = "txtPasswordAwol";
             this.txtPasswordAwol.Size = new System.Drawing.Size(100, 22);
             this.txtPasswordAwol.TabIndex = 6;
@@ -92,17 +95,17 @@
             // lblMessageAwol
             // 
             this.lblMessageAwol.AutoSize = true;
-            this.lblMessageAwol.Location = new System.Drawing.Point(249, 312);
+            this.lblMessageAwol.Location = new System.Drawing.Point(123, 345);
             this.lblMessageAwol.Name = "lblMessageAwol";
             this.lblMessageAwol.Size = new System.Drawing.Size(64, 16);
             this.lblMessageAwol.TabIndex = 7;
             this.lblMessageAwol.Text = "Message";
             // 
-            // Form1
+            // FormLoginAwol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(315, 450);
             this.Controls.Add(this.lblMessageAwol);
             this.Controls.Add(this.txtPasswordAwol);
             this.Controls.Add(this.btnRegisterAwol);
@@ -110,8 +113,8 @@
             this.Controls.Add(this.txtUsernameAwol);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormLoginAwol";
+            this.Text = "FormLoginAwol";
             this.Load += new System.EventHandler(this.FormLoginAwol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
