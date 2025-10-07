@@ -473,11 +473,12 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
             return _adminOverride || IsCurrentUserAdmin(); // override wint van DB
         }
 
+        // dit overwrite de sessie zodat gebruiker admin kan worden
         private void UpdateRoleLabel()
         {
             if (lblRoleAwol != null)
                 lblRoleAwol.Text = IsAdminSession()
-                    ? (_adminOverride ? "Role: Admin (override)" : "Role: Admin")
+                    ? (_adminOverride ? "Role: Admin" : "Role: Admin")
                     : "Role: Player";
         }
 
@@ -486,5 +487,6 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
             _adminOverride = chkAdminModeAwol.Checked;
             UpdateRoleLabel();
         }
+
     }
 }

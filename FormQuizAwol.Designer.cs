@@ -50,15 +50,23 @@
             this.btnAdminAwol = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.chkAdminModeAwol = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblRoleAwol = new System.Windows.Forms.Label();
+            this.GameManagementAwol = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.GameManagementAwol.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStartAwol
             // 
             this.btnStartAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnStartAwol.BackgroundImage")));
             this.btnStartAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnStartAwol.Location = new System.Drawing.Point(310, 90);
+            this.btnStartAwol.Location = new System.Drawing.Point(134, 56);
             this.btnStartAwol.Name = "btnStartAwol";
             this.btnStartAwol.Size = new System.Drawing.Size(108, 94);
             this.btnStartAwol.TabIndex = 0;
@@ -67,9 +75,10 @@
             // 
             // btnAawol
             // 
-            this.btnAawol.Location = new System.Drawing.Point(15, 322);
+            this.btnAawol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAawol.Location = new System.Drawing.Point(81, 234);
             this.btnAawol.Name = "btnAawol";
-            this.btnAawol.Size = new System.Drawing.Size(170, 51);
+            this.btnAawol.Size = new System.Drawing.Size(161, 83);
             this.btnAawol.TabIndex = 1;
             this.btnAawol.Text = "A";
             this.btnAawol.UseVisualStyleBackColor = true;
@@ -77,9 +86,10 @@
             // 
             // btnBawol
             // 
-            this.btnBawol.Location = new System.Drawing.Point(216, 322);
+            this.btnBawol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBawol.Location = new System.Drawing.Point(272, 232);
             this.btnBawol.Name = "btnBawol";
-            this.btnBawol.Size = new System.Drawing.Size(170, 51);
+            this.btnBawol.Size = new System.Drawing.Size(161, 83);
             this.btnBawol.TabIndex = 2;
             this.btnBawol.Text = "B";
             this.btnBawol.UseVisualStyleBackColor = true;
@@ -87,9 +97,10 @@
             // 
             // btnCawol
             // 
-            this.btnCawol.Location = new System.Drawing.Point(418, 322);
+            this.btnCawol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCawol.Location = new System.Drawing.Point(81, 321);
             this.btnCawol.Name = "btnCawol";
-            this.btnCawol.Size = new System.Drawing.Size(170, 51);
+            this.btnCawol.Size = new System.Drawing.Size(161, 83);
             this.btnCawol.TabIndex = 3;
             this.btnCawol.Text = "C";
             this.btnCawol.UseVisualStyleBackColor = true;
@@ -97,9 +108,10 @@
             // 
             // btnDawol
             // 
-            this.btnDawol.Location = new System.Drawing.Point(618, 322);
+            this.btnDawol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDawol.Location = new System.Drawing.Point(272, 321);
             this.btnDawol.Name = "btnDawol";
-            this.btnDawol.Size = new System.Drawing.Size(170, 51);
+            this.btnDawol.Size = new System.Drawing.Size(161, 83);
             this.btnDawol.TabIndex = 4;
             this.btnDawol.Text = "D";
             this.btnDawol.UseVisualStyleBackColor = true;
@@ -108,56 +120,62 @@
             // lblTitleAwol
             // 
             this.lblTitleAwol.AutoSize = true;
-            this.lblTitleAwol.Location = new System.Drawing.Point(311, 56);
+            this.lblTitleAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleAwol.Location = new System.Drawing.Point(175, 21);
             this.lblTitleAwol.Name = "lblTitleAwol";
-            this.lblTitleAwol.Size = new System.Drawing.Size(107, 16);
+            this.lblTitleAwol.Size = new System.Drawing.Size(160, 25);
             this.lblTitleAwol.TabIndex = 5;
             this.lblTitleAwol.Text = "Klik start to begin";
             // 
             // lblScoreValueAwol
             // 
             this.lblScoreValueAwol.AutoSize = true;
-            this.lblScoreValueAwol.Location = new System.Drawing.Point(191, 273);
+            this.lblScoreValueAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreValueAwol.Location = new System.Drawing.Point(106, 34);
             this.lblScoreValueAwol.Name = "lblScoreValueAwol";
-            this.lblScoreValueAwol.Size = new System.Drawing.Size(14, 16);
+            this.lblScoreValueAwol.Size = new System.Drawing.Size(30, 32);
             this.lblScoreValueAwol.TabIndex = 6;
             this.lblScoreValueAwol.Text = "0";
             // 
             // lblTimeTextAwol
             // 
             this.lblTimeTextAwol.AutoSize = true;
-            this.lblTimeTextAwol.Location = new System.Drawing.Point(311, 273);
+            this.lblTimeTextAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeTextAwol.Location = new System.Drawing.Point(10, 172);
             this.lblTimeTextAwol.Name = "lblTimeTextAwol";
-            this.lblTimeTextAwol.Size = new System.Drawing.Size(175, 16);
+            this.lblTimeTextAwol.Size = new System.Drawing.Size(171, 32);
             this.lblTimeTextAwol.TabIndex = 7;
-            this.lblTimeTextAwol.Text = "Time before the game ends:";
+            this.lblTimeTextAwol.Text = "Game Ends:";
             // 
             // lblScoreTextAwol
             // 
             this.lblScoreTextAwol.AutoSize = true;
-            this.lblScoreTextAwol.Location = new System.Drawing.Point(122, 268);
+            this.lblScoreTextAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreTextAwol.Location = new System.Drawing.Point(10, 34);
             this.lblScoreTextAwol.Name = "lblScoreTextAwol";
-            this.lblScoreTextAwol.Size = new System.Drawing.Size(46, 16);
+            this.lblScoreTextAwol.Size = new System.Drawing.Size(96, 32);
             this.lblScoreTextAwol.TabIndex = 8;
             this.lblScoreTextAwol.Text = "Score:";
             // 
             // lblTimeValueAwol
             // 
             this.lblTimeValueAwol.AutoSize = true;
-            this.lblTimeValueAwol.Location = new System.Drawing.Point(494, 273);
+            this.lblTimeValueAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeValueAwol.Location = new System.Drawing.Point(187, 172);
             this.lblTimeValueAwol.Name = "lblTimeValueAwol";
-            this.lblTimeValueAwol.Size = new System.Drawing.Size(14, 16);
+            this.lblTimeValueAwol.Size = new System.Drawing.Size(30, 32);
             this.lblTimeValueAwol.TabIndex = 9;
             this.lblTimeValueAwol.Text = "0";
             // 
             // lblQuestionsAwol
             // 
             this.lblQuestionsAwol.AutoSize = true;
-            this.lblQuestionsAwol.Location = new System.Drawing.Point(330, 201);
+            this.lblQuestionsAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestionsAwol.Location = new System.Drawing.Point(17, 184);
             this.lblQuestionsAwol.Name = "lblQuestionsAwol";
-            this.lblQuestionsAwol.Size = new System.Drawing.Size(67, 16);
+            this.lblQuestionsAwol.Size = new System.Drawing.Size(25, 16);
             this.lblQuestionsAwol.TabIndex = 10;
-            this.lblQuestionsAwol.Text = "Questions";
+            this.lblQuestionsAwol.Text = "......";
             // 
             // gameTimerAwol
             // 
@@ -166,7 +184,7 @@
             // clbCategoriesAwol
             // 
             this.clbCategoriesAwol.FormattingEnabled = true;
-            this.clbCategoriesAwol.Location = new System.Drawing.Point(34, 75);
+            this.clbCategoriesAwol.Location = new System.Drawing.Point(8, 21);
             this.clbCategoriesAwol.Name = "clbCategoriesAwol";
             this.clbCategoriesAwol.Size = new System.Drawing.Size(140, 89);
             this.clbCategoriesAwol.TabIndex = 11;
@@ -175,7 +193,7 @@
             // 
             this.btnSkipAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSkipAwol.BackgroundImage")));
             this.btnSkipAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSkipAwol.Location = new System.Drawing.Point(545, 90);
+            this.btnSkipAwol.Location = new System.Drawing.Point(272, 56);
             this.btnSkipAwol.Name = "btnSkipAwol";
             this.btnSkipAwol.Size = new System.Drawing.Size(108, 94);
             this.btnSkipAwol.TabIndex = 12;
@@ -186,7 +204,7 @@
             // 
             this.btnScoresAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScoresAwol.BackgroundImage")));
             this.btnScoresAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnScoresAwol.Location = new System.Drawing.Point(659, 90);
+            this.btnScoresAwol.Location = new System.Drawing.Point(158, 71);
             this.btnScoresAwol.Name = "btnScoresAwol";
             this.btnScoresAwol.Size = new System.Drawing.Size(108, 94);
             this.btnScoresAwol.TabIndex = 13;
@@ -196,18 +214,20 @@
             // lblQtimeTextAwol
             // 
             this.lblQtimeTextAwol.AutoSize = true;
-            this.lblQtimeTextAwol.Location = new System.Drawing.Point(213, 148);
+            this.lblQtimeTextAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtimeTextAwol.Location = new System.Drawing.Point(13, 99);
             this.lblQtimeTextAwol.Name = "lblQtimeTextAwol";
-            this.lblQtimeTextAwol.Size = new System.Drawing.Size(58, 16);
+            this.lblQtimeTextAwol.Size = new System.Drawing.Size(123, 32);
             this.lblQtimeTextAwol.TabIndex = 14;
             this.lblQtimeTextAwol.Text = "Q- Time:";
             // 
             // lblQtimeValueAwol
             // 
             this.lblQtimeValueAwol.AutoSize = true;
-            this.lblQtimeValueAwol.Location = new System.Drawing.Point(277, 148);
+            this.lblQtimeValueAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtimeValueAwol.Location = new System.Drawing.Point(142, 99);
             this.lblQtimeValueAwol.Name = "lblQtimeValueAwol";
-            this.lblQtimeValueAwol.Size = new System.Drawing.Size(21, 16);
+            this.lblQtimeValueAwol.Size = new System.Drawing.Size(46, 32);
             this.lblQtimeValueAwol.TabIndex = 15;
             this.lblQtimeValueAwol.Text = "10";
             // 
@@ -215,7 +235,7 @@
             // 
             this.btnAdminAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAdminAwol.BackgroundImage")));
             this.btnAdminAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAdminAwol.Location = new System.Drawing.Point(659, 190);
+            this.btnAdminAwol.Location = new System.Drawing.Point(16, 71);
             this.btnAdminAwol.Name = "btnAdminAwol";
             this.btnAdminAwol.Size = new System.Drawing.Size(108, 94);
             this.btnAdminAwol.TabIndex = 16;
@@ -225,7 +245,7 @@
             // chkAdminModeAwol
             // 
             this.chkAdminModeAwol.AutoSize = true;
-            this.chkAdminModeAwol.Location = new System.Drawing.Point(548, 52);
+            this.chkAdminModeAwol.Location = new System.Drawing.Point(19, 38);
             this.chkAdminModeAwol.Name = "chkAdminModeAwol";
             this.chkAdminModeAwol.Size = new System.Drawing.Size(105, 20);
             this.chkAdminModeAwol.TabIndex = 17;
@@ -233,54 +253,100 @@
             this.chkAdminModeAwol.UseVisualStyleBackColor = true;
             this.chkAdminModeAwol.CheckedChanged += new System.EventHandler(this.chkAdminModeAwol_CheckedChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 16);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Role:";
-            // 
             // lblRoleAwol
             // 
             this.lblRoleAwol.AutoSize = true;
-            this.lblRoleAwol.Location = new System.Drawing.Point(122, 29);
+            this.lblRoleAwol.Location = new System.Drawing.Point(155, 38);
             this.lblRoleAwol.Name = "lblRoleAwol";
             this.lblRoleAwol.Size = new System.Drawing.Size(33, 16);
             this.lblRoleAwol.TabIndex = 19;
             this.lblRoleAwol.Text = "user";
             // 
+            // GameManagementAwol
+            // 
+            this.GameManagementAwol.Controls.Add(this.btnScoresAwol);
+            this.GameManagementAwol.Controls.Add(this.btnAdminAwol);
+            this.GameManagementAwol.Controls.Add(this.lblRoleAwol);
+            this.GameManagementAwol.Controls.Add(this.chkAdminModeAwol);
+            this.GameManagementAwol.Location = new System.Drawing.Point(665, 2);
+            this.GameManagementAwol.Name = "GameManagementAwol";
+            this.GameManagementAwol.Size = new System.Drawing.Size(280, 180);
+            this.GameManagementAwol.TabIndex = 20;
+            this.GameManagementAwol.TabStop = false;
+            this.GameManagementAwol.Text = "Game Management";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblQtimeTextAwol);
+            this.groupBox1.Controls.Add(this.lblQtimeValueAwol);
+            this.groupBox1.Controls.Add(this.lblScoreValueAwol);
+            this.groupBox1.Controls.Add(this.lblTimeTextAwol);
+            this.groupBox1.Controls.Add(this.lblScoreTextAwol);
+            this.groupBox1.Controls.Add(this.lblTimeValueAwol);
+            this.groupBox1.Location = new System.Drawing.Point(665, 188);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(280, 229);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Game Info";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.clbCategoriesAwol);
+            this.groupBox2.Location = new System.Drawing.Point(12, 2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(159, 179);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Game Setup ";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.lblTitleAwol);
+            this.groupBox3.Controls.Add(this.btnStartAwol);
+            this.groupBox3.Controls.Add(this.btnSkipAwol);
+            this.groupBox3.Controls.Add(this.lblQuestionsAwol);
+            this.groupBox3.Controls.Add(this.btnDawol);
+            this.groupBox3.Controls.Add(this.btnAawol);
+            this.groupBox3.Controls.Add(this.btnCawol);
+            this.groupBox3.Controls.Add(this.btnBawol);
+            this.groupBox3.Location = new System.Drawing.Point(177, 2);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(482, 414);
+            this.groupBox3.TabIndex = 23;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Game Play ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(219, 164);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 16);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Questions:";
+            // 
             // FormQuizAwol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1295, 523);
-            this.Controls.Add(this.lblRoleAwol);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.chkAdminModeAwol);
-            this.Controls.Add(this.btnAdminAwol);
-            this.Controls.Add(this.lblQtimeValueAwol);
-            this.Controls.Add(this.lblQtimeTextAwol);
-            this.Controls.Add(this.btnScoresAwol);
-            this.Controls.Add(this.btnSkipAwol);
-            this.Controls.Add(this.clbCategoriesAwol);
-            this.Controls.Add(this.lblQuestionsAwol);
-            this.Controls.Add(this.lblTimeValueAwol);
-            this.Controls.Add(this.lblScoreTextAwol);
-            this.Controls.Add(this.lblTimeTextAwol);
-            this.Controls.Add(this.lblScoreValueAwol);
-            this.Controls.Add(this.lblTitleAwol);
-            this.Controls.Add(this.btnDawol);
-            this.Controls.Add(this.btnCawol);
-            this.Controls.Add(this.btnBawol);
-            this.Controls.Add(this.btnAawol);
-            this.Controls.Add(this.btnStartAwol);
+            this.ClientSize = new System.Drawing.Size(988, 427);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.GameManagementAwol);
             this.Name = "FormQuizAwol";
             this.Text = "FormQuizAwol";
             this.Load += new System.EventHandler(this.FormQuizAwol_Load);
+            this.GameManagementAwol.ResumeLayout(false);
+            this.GameManagementAwol.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -306,7 +372,11 @@
         private System.Windows.Forms.Button btnAdminAwol;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.CheckBox chkAdminModeAwol;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblRoleAwol;
+        private System.Windows.Forms.GroupBox GameManagementAwol;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label1;
     }
 }
