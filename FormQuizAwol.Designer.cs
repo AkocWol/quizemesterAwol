@@ -76,7 +76,7 @@
             // btnAawol
             // 
             this.btnAawol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAawol.Location = new System.Drawing.Point(81, 234);
+            this.btnAawol.Location = new System.Drawing.Point(81, 265);
             this.btnAawol.Name = "btnAawol";
             this.btnAawol.Size = new System.Drawing.Size(161, 83);
             this.btnAawol.TabIndex = 1;
@@ -87,7 +87,7 @@
             // btnBawol
             // 
             this.btnBawol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnBawol.Location = new System.Drawing.Point(272, 232);
+            this.btnBawol.Location = new System.Drawing.Point(272, 265);
             this.btnBawol.Name = "btnBawol";
             this.btnBawol.Size = new System.Drawing.Size(161, 83);
             this.btnBawol.TabIndex = 2;
@@ -98,7 +98,7 @@
             // btnCawol
             // 
             this.btnCawol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCawol.Location = new System.Drawing.Point(81, 321);
+            this.btnCawol.Location = new System.Drawing.Point(81, 358);
             this.btnCawol.Name = "btnCawol";
             this.btnCawol.Size = new System.Drawing.Size(161, 83);
             this.btnCawol.TabIndex = 3;
@@ -109,7 +109,7 @@
             // btnDawol
             // 
             this.btnDawol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDawol.Location = new System.Drawing.Point(272, 321);
+            this.btnDawol.Location = new System.Drawing.Point(272, 358);
             this.btnDawol.Name = "btnDawol";
             this.btnDawol.Size = new System.Drawing.Size(161, 83);
             this.btnDawol.TabIndex = 4;
@@ -171,7 +171,8 @@
             // 
             this.lblQuestionsAwol.AutoSize = true;
             this.lblQuestionsAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuestionsAwol.Location = new System.Drawing.Point(17, 184);
+            this.lblQuestionsAwol.Location = new System.Drawing.Point(21, 186);
+            this.lblQuestionsAwol.MaximumSize = new System.Drawing.Size(440, 0);
             this.lblQuestionsAwol.Name = "lblQuestionsAwol";
             this.lblQuestionsAwol.Size = new System.Drawing.Size(25, 16);
             this.lblQuestionsAwol.TabIndex = 10;
@@ -204,7 +205,7 @@
             // 
             this.btnScoresAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnScoresAwol.BackgroundImage")));
             this.btnScoresAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnScoresAwol.Location = new System.Drawing.Point(158, 71);
+            this.btnScoresAwol.Location = new System.Drawing.Point(158, 85);
             this.btnScoresAwol.Name = "btnScoresAwol";
             this.btnScoresAwol.Size = new System.Drawing.Size(108, 94);
             this.btnScoresAwol.TabIndex = 13;
@@ -235,7 +236,7 @@
             // 
             this.btnAdminAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAdminAwol.BackgroundImage")));
             this.btnAdminAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnAdminAwol.Location = new System.Drawing.Point(16, 71);
+            this.btnAdminAwol.Location = new System.Drawing.Point(16, 85);
             this.btnAdminAwol.Name = "btnAdminAwol";
             this.btnAdminAwol.Size = new System.Drawing.Size(108, 94);
             this.btnAdminAwol.TabIndex = 16;
@@ -270,7 +271,7 @@
             this.GameManagementAwol.Controls.Add(this.chkAdminModeAwol);
             this.GameManagementAwol.Location = new System.Drawing.Point(665, 2);
             this.GameManagementAwol.Name = "GameManagementAwol";
-            this.GameManagementAwol.Size = new System.Drawing.Size(280, 180);
+            this.GameManagementAwol.Size = new System.Drawing.Size(280, 212);
             this.GameManagementAwol.TabIndex = 20;
             this.GameManagementAwol.TabStop = false;
             this.GameManagementAwol.Text = "Game Management";
@@ -283,7 +284,7 @@
             this.groupBox1.Controls.Add(this.lblTimeTextAwol);
             this.groupBox1.Controls.Add(this.lblScoreTextAwol);
             this.groupBox1.Controls.Add(this.lblTimeValueAwol);
-            this.groupBox1.Location = new System.Drawing.Point(665, 188);
+            this.groupBox1.Location = new System.Drawing.Point(665, 220);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(280, 229);
             this.groupBox1.TabIndex = 21;
@@ -303,17 +304,17 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.lblQuestionsAwol);
             this.groupBox3.Controls.Add(this.lblTitleAwol);
             this.groupBox3.Controls.Add(this.btnStartAwol);
             this.groupBox3.Controls.Add(this.btnSkipAwol);
-            this.groupBox3.Controls.Add(this.lblQuestionsAwol);
             this.groupBox3.Controls.Add(this.btnDawol);
             this.groupBox3.Controls.Add(this.btnAawol);
             this.groupBox3.Controls.Add(this.btnCawol);
             this.groupBox3.Controls.Add(this.btnBawol);
             this.groupBox3.Location = new System.Drawing.Point(177, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(482, 414);
+            this.groupBox3.Size = new System.Drawing.Size(482, 447);
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Game Play ";
@@ -321,17 +322,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(219, 164);
+            this.label1.Location = new System.Drawing.Point(177, 163);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 16);
+            this.label1.Size = new System.Drawing.Size(140, 16);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Questions:";
+            this.label1.Text = "Questions Down here  ";
             // 
             // FormQuizAwol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(988, 427);
+            this.ClientSize = new System.Drawing.Size(956, 458);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
