@@ -25,16 +25,24 @@ namespace quizemesterAwol
         private int _score = 0;
         private int _timeRemaining = 60;
         private int? _specialIndex = null;     // index in _questions
+        private int _qTimeRemaining = QUESTION_TIME_LIMIT;
+        private int _specialQuizCorrect = 0;
+        private int _penaltySeconds = 0;
+
         private bool _quizRunning = false;
         private bool _skipUsed = false;
         private bool _adminOverride = false;  // sessie-toggle
         private bool _joker5050Used = false;
         private bool _isSpecialActive = false;
+        private bool _isSpecialQuizMode = false;
+
         private List<int> _selectedCategoryIds = new List<int>(); // leeg = General (alles)
+
         private const int QUESTION_TIME_LIMIT = 10;
         private const int SPECIAL_BONUS = 3;   // extra punten bij goed
-        private int _qTimeRemaining = QUESTION_TIME_LIMIT;
+
         private readonly Color _defaultPlayBg = SystemColors.Control; // originele bg van groupBox3
+        private readonly System.Diagnostics.Stopwatch _totalStopwatch = new System.Diagnostics.Stopwatch();
 
         public string CurrentUsername { get; set; } = "Unknown";   // Zet dit vanuit Form1
 
@@ -103,6 +111,8 @@ namespace quizemesterAwol
                 _timeRemaining = 60;
                 _currentIndex = 0;
                 _quizRunning = true;
+                _isSpecialQuizMode = false; // start normale quiz
+
 
                 lblScoreValueAwol.Text = "0";
                 lblTimeValueAwol.Text = _timeRemaining.ToString();
@@ -123,6 +133,16 @@ namespace quizemesterAwol
 
         private void gameTimerAwol_Tick(object sender, EventArgs e)
         {
+            if (_isSpecialQuizMode)
+            {
+                if (!_quizRunning) return;
+
+                var elapsed = _totalStopwatch.Elapsed + TimeSpan.FromSeconds(_penaltySeconds);
+                // Toon mm:ss
+                lblTotalTimeAwol.Text = $"{(int)elapsed.TotalMinutes:00}:{elapsed.Seconds:00}";
+                return; // geen gewone timers/straffen hier
+            }
+
             if (!_quizRunning) return;
 
             _timeRemaining--;
@@ -178,6 +198,13 @@ namespace quizemesterAwol
                 return;
             }
 
+            // Nieuwe vraag = knoppen weer actief + neutrale kleur
+            SetAnswerButtonsEnabled(true);
+            btnAawol.BackColor = SystemColors.Control;
+            btnBawol.BackColor = SystemColors.Control;
+            btnCawol.BackColor = SystemColors.Control;
+            btnDawol.BackColor = SystemColors.Control;
+
             var q = _questions[_currentIndex];
 
             lblQuestionsAwol.Text = q.QuestionText;
@@ -213,14 +240,27 @@ namespace quizemesterAwol
                 buttons[i].Tag = options[i].IsCorrect; // bool
             }
 
-            _qTimeRemaining = QUESTION_TIME_LIMIT;
-            lblQtimeValueAwol.Text = _qTimeRemaining.ToString();
-            lblQtimeValueAwol.ForeColor = Color.Black;
+            if (_isSpecialQuizMode)
+            {
+                // geen per-vraag timer in special quiz
+                lblQtimeValueAwol.Text = "-";
+                lblQtimeValueAwol.ForeColor = Color.Black;
+            }
+            else
+            {
+                _qTimeRemaining = QUESTION_TIME_LIMIT;
+                lblQtimeValueAwol.Text = _qTimeRemaining.ToString();
+                lblQtimeValueAwol.ForeColor = Color.Black;
+            }
+
         }
 
         private void AnswerSelected(Button btn)
         {
             if (!_quizRunning) return;
+
+            // blokkeer direct verdere input
+            SetAnswerButtonsEnabled(false);
 
             bool isCorrect = (btn.Tag is bool b) && b;
 
@@ -230,24 +270,38 @@ namespace quizemesterAwol
                 lblScoreValueAwol.Text = _score.ToString();
                 btn.BackColor = Color.LightGreen;
 
-                // speel correct geluid
+                // special question bonus (als actief)
+                if (_isSpecialActive)
+                {
+                    _score += SPECIAL_BONUS;
+                    lblScoreValueAwol.Text = _score.ToString();
+                    _isSpecialActive = false; // reset de vlag
+                }
+
+                // geluid: goed
                 TryPlaySound("Sounds/correct.wav");
             }
             else
             {
                 btn.BackColor = Color.LightCoral;
 
-                // speel fout geluid
+                // geluid: fout
                 TryPlaySound("Sounds/wrong.wav");
             }
 
-            // korte visuele feedback
+            // korte visuele feedback en dan door naar volgende vraag
             var t = new Timer { Interval = 300 };
             t.Tick += (s, e) =>
             {
                 t.Stop();
+
+                // reset kleur van de geklikte knop
                 btn.BackColor = SystemColors.Control;
+
                 NextQuestionOrFinish();
+
+                // in ShowCurrentQuestion() worden knoppen weer juist (de)geactiveerd
+                // dus hier niets opnieuw enablen
             };
             t.Start();
         }
@@ -321,7 +375,48 @@ namespace quizemesterAwol
                 b.Enabled = keep;
             }
 
-            _joker5050Used = true;
+            _joker5050Used = false;
+        }
+
+        private void btnSpecialQuizAwol_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _isSpecialQuizMode = true;
+                _specialQuizCorrect = 0;
+                _penaltySeconds = 0;
+
+                _selectedCategoryIds = GetSelectedCategoryIds();
+                _questions = LoadQuestionsFromDb(_selectedCategoryIds)
+                    .OrderBy(_ => _rng.Next()).ToList();
+                if (_questions.Count == 0)
+                {
+                    MessageBox.Show("No questions found.", "Quiz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // disable normale timers / reset UI
+                _score = 0;
+                _currentIndex = 0;
+                _quizRunning = true;
+                lblScoreValueAwol.Text = "0";
+
+                // toon eerste vraag
+                SetAnswerButtonsEnabled(true);
+                ShowCurrentQuestion();
+
+                // stopwatch
+                _totalStopwatch.Reset();
+                _totalStopwatch.Start();
+
+                // gebruik je bestaande timer alleen om weergave bij te werken
+                gameTimerAwol.Interval = 250; // snellere update
+                gameTimerAwol.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error starting special quiz:\n" + ex.Message);
+            }
         }
 
         // ===== DB =====
@@ -547,20 +642,19 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
 
         private void TryPlaySound(string path)
 {
-    try
-    {
-        if (System.IO.File.Exists(path))
-        {
-            using (SoundPlayer player = new SoundPlayer(path))
-                player.Play();
+            try
+            {
+                if (System.IO.File.Exists(path))
+                {
+                    using (SoundPlayer player = new SoundPlayer(path))
+                        player.Play();
+                }
+            }
+            catch
+            {
+                // geen foutmelding tonen als geluid ontbreekt
+            }
         }
-    }
-    catch
-    {
-        // geen foutmelding tonen als geluid ontbreekt
-    }
-}
-
 
     }
 }
