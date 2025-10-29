@@ -106,5 +106,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="sound\correct.wav" />
+    <Content Include="sound\special.wav" />
+    <Content Include="sound\win.wav" />
+    <Content Include="sound\wrong.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

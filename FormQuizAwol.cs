@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace quizemesterAwol
 {
@@ -23,12 +24,17 @@ namespace quizemesterAwol
         private int _currentIndex = -1;
         private int _score = 0;
         private int _timeRemaining = 60;
+        private int? _specialIndex = null;     // index in _questions
         private bool _quizRunning = false;
         private bool _skipUsed = false;
         private bool _adminOverride = false;  // sessie-toggle
+        private bool _joker5050Used = false;
+        private bool _isSpecialActive = false;
         private List<int> _selectedCategoryIds = new List<int>(); // leeg = General (alles)
         private const int QUESTION_TIME_LIMIT = 10;
+        private const int SPECIAL_BONUS = 3;   // extra punten bij goed
         private int _qTimeRemaining = QUESTION_TIME_LIMIT;
+        private readonly Color _defaultPlayBg = SystemColors.Control; // originele bg van groupBox3
 
         public string CurrentUsername { get; set; } = "Unknown";   // Zet dit vanuit Form1
 
@@ -56,7 +62,6 @@ namespace quizemesterAwol
             if (chkAdminModeAwol != null) chkAdminModeAwol.Checked = false;
             UpdateRoleLabel();
         }
-
 
         private void ResetUi()
         {
@@ -177,6 +182,21 @@ namespace quizemesterAwol
 
             lblQuestionsAwol.Text = q.QuestionText;
 
+            // === Special Question: kleur en geluid ===
+            if (_specialIndex.HasValue && _currentIndex == _specialIndex.Value)
+            {
+                _isSpecialActive = true;
+                groupBox3.BackColor = Color.Gold;
+                lblQuestionsAwol.Font = new Font(lblQuestionsAwol.Font, FontStyle.Bold);
+                TryPlaySound("Sounds/special.wav");
+            }
+            else
+            {
+                _isSpecialActive = false;
+                groupBox3.BackColor = _defaultPlayBg;
+                lblQuestionsAwol.Font = new Font(lblQuestionsAwol.Font, FontStyle.Regular);
+            }
+
             // Antwoorden per vraag randomiseren, maar weten welke correct is
             var options = new List<(string Text, bool IsCorrect)>
             {
@@ -203,15 +223,22 @@ namespace quizemesterAwol
             if (!_quizRunning) return;
 
             bool isCorrect = (btn.Tag is bool b) && b;
+
             if (isCorrect)
             {
                 _score++;
                 lblScoreValueAwol.Text = _score.ToString();
                 btn.BackColor = Color.LightGreen;
+
+                // speel correct geluid
+                TryPlaySound("Sounds/correct.wav");
             }
             else
             {
                 btn.BackColor = Color.LightCoral;
+
+                // speel fout geluid
+                TryPlaySound("Sounds/wrong.wav");
             }
 
             // korte visuele feedback
@@ -253,6 +280,9 @@ namespace quizemesterAwol
             if (!_quizRunning) return;
             if (_skipUsed)
             {
+                // speel win geluid
+                TryPlaySound("Sounds/win.wav");
+
                 MessageBox.Show("Skip already used.");
                 return;
             }
@@ -265,6 +295,33 @@ namespace quizemesterAwol
         {
             using (var f = new FormScoresAwol(connectionString))
                 f.ShowDialog(this);
+        }
+
+        private void btn5050Awol_Click(object sender, EventArgs e)
+        {
+            if (!_quizRunning) return;
+            if (_joker5050Used)
+            {
+                MessageBox.Show("50/50 joker is al gebruikt.");
+                return;
+            }
+
+            var buttons = new[] { btnAawol, btnBawol, btnCawol, btnDawol };
+            // Bepaal correct en verkeerd
+            var correctBtn = buttons.First(b => (b.Tag is bool ok) && ok);
+            var wrongBtns = buttons.Where(b => !(b.Tag is bool ok) || !ok).ToList();
+
+            // Houd 1 willekeurige verkeerde over
+            var keepWrong = wrongBtns[_rng.Next(wrongBtns.Count)];
+
+            // Schakel de andere twee uit
+            foreach (var b in buttons)
+            {
+                bool keep = (b == correctBtn) || (b == keepWrong);
+                b.Enabled = keep;
+            }
+
+            _joker5050Used = true;
         }
 
         // ===== DB =====
@@ -487,6 +544,23 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
             _adminOverride = chkAdminModeAwol.Checked;
             UpdateRoleLabel();
         }
+
+        private void TryPlaySound(string path)
+{
+    try
+    {
+        if (System.IO.File.Exists(path))
+        {
+            using (SoundPlayer player = new SoundPlayer(path))
+                player.Play();
+        }
+    }
+    catch
+    {
+        // geen foutmelding tonen als geluid ontbreekt
+    }
+}
+
 
     }
 }

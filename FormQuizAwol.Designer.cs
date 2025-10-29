@@ -55,7 +55,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn5050Awol = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSpecialQuizAwol = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.GameManagementAwol.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -66,7 +69,7 @@
             // 
             this.btnStartAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnStartAwol.BackgroundImage")));
             this.btnStartAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnStartAwol.Location = new System.Drawing.Point(134, 56);
+            this.btnStartAwol.Location = new System.Drawing.Point(120, 56);
             this.btnStartAwol.Name = "btnStartAwol";
             this.btnStartAwol.Size = new System.Drawing.Size(108, 94);
             this.btnStartAwol.TabIndex = 0;
@@ -130,40 +133,40 @@
             // lblScoreValueAwol
             // 
             this.lblScoreValueAwol.AutoSize = true;
-            this.lblScoreValueAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreValueAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreValueAwol.Location = new System.Drawing.Point(106, 34);
             this.lblScoreValueAwol.Name = "lblScoreValueAwol";
-            this.lblScoreValueAwol.Size = new System.Drawing.Size(30, 32);
+            this.lblScoreValueAwol.Size = new System.Drawing.Size(18, 20);
             this.lblScoreValueAwol.TabIndex = 6;
             this.lblScoreValueAwol.Text = "0";
             // 
             // lblTimeTextAwol
             // 
             this.lblTimeTextAwol.AutoSize = true;
-            this.lblTimeTextAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeTextAwol.Location = new System.Drawing.Point(10, 172);
+            this.lblTimeTextAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeTextAwol.Location = new System.Drawing.Point(10, 124);
             this.lblTimeTextAwol.Name = "lblTimeTextAwol";
-            this.lblTimeTextAwol.Size = new System.Drawing.Size(171, 32);
+            this.lblTimeTextAwol.Size = new System.Drawing.Size(102, 20);
             this.lblTimeTextAwol.TabIndex = 7;
             this.lblTimeTextAwol.Text = "Game Ends:";
             // 
             // lblScoreTextAwol
             // 
             this.lblScoreTextAwol.AutoSize = true;
-            this.lblScoreTextAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoreTextAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScoreTextAwol.Location = new System.Drawing.Point(10, 34);
             this.lblScoreTextAwol.Name = "lblScoreTextAwol";
-            this.lblScoreTextAwol.Size = new System.Drawing.Size(96, 32);
+            this.lblScoreTextAwol.Size = new System.Drawing.Size(58, 20);
             this.lblScoreTextAwol.TabIndex = 8;
             this.lblScoreTextAwol.Text = "Score:";
             // 
             // lblTimeValueAwol
             // 
             this.lblTimeValueAwol.AutoSize = true;
-            this.lblTimeValueAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeValueAwol.Location = new System.Drawing.Point(187, 172);
+            this.lblTimeValueAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeValueAwol.Location = new System.Drawing.Point(139, 124);
             this.lblTimeValueAwol.Name = "lblTimeValueAwol";
-            this.lblTimeValueAwol.Size = new System.Drawing.Size(30, 32);
+            this.lblTimeValueAwol.Size = new System.Drawing.Size(18, 20);
             this.lblTimeValueAwol.TabIndex = 9;
             this.lblTimeValueAwol.Text = "0";
             // 
@@ -194,7 +197,7 @@
             // 
             this.btnSkipAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSkipAwol.BackgroundImage")));
             this.btnSkipAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSkipAwol.Location = new System.Drawing.Point(272, 56);
+            this.btnSkipAwol.Location = new System.Drawing.Point(254, 56);
             this.btnSkipAwol.Name = "btnSkipAwol";
             this.btnSkipAwol.Size = new System.Drawing.Size(108, 94);
             this.btnSkipAwol.TabIndex = 12;
@@ -215,20 +218,20 @@
             // lblQtimeTextAwol
             // 
             this.lblQtimeTextAwol.AutoSize = true;
-            this.lblQtimeTextAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtimeTextAwol.Location = new System.Drawing.Point(13, 99);
+            this.lblQtimeTextAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtimeTextAwol.Location = new System.Drawing.Point(15, 77);
             this.lblQtimeTextAwol.Name = "lblQtimeTextAwol";
-            this.lblQtimeTextAwol.Size = new System.Drawing.Size(123, 32);
+            this.lblQtimeTextAwol.Size = new System.Drawing.Size(75, 20);
             this.lblQtimeTextAwol.TabIndex = 14;
             this.lblQtimeTextAwol.Text = "Q- Time:";
             // 
             // lblQtimeValueAwol
             // 
             this.lblQtimeValueAwol.AutoSize = true;
-            this.lblQtimeValueAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtimeValueAwol.Location = new System.Drawing.Point(142, 99);
+            this.lblQtimeValueAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtimeValueAwol.Location = new System.Drawing.Point(121, 77);
             this.lblQtimeValueAwol.Name = "lblQtimeValueAwol";
-            this.lblQtimeValueAwol.Size = new System.Drawing.Size(46, 32);
+            this.lblQtimeValueAwol.Size = new System.Drawing.Size(27, 20);
             this.lblQtimeValueAwol.TabIndex = 15;
             this.lblQtimeValueAwol.Text = "10";
             // 
@@ -278,6 +281,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.lblQtimeTextAwol);
             this.groupBox1.Controls.Add(this.lblQtimeValueAwol);
             this.groupBox1.Controls.Add(this.lblScoreValueAwol);
@@ -303,6 +307,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnSpecialQuizAwol);
+            this.groupBox3.Controls.Add(this.btn5050Awol);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.lblQuestionsAwol);
             this.groupBox3.Controls.Add(this.lblTitleAwol);
@@ -319,6 +325,17 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Game Play ";
             // 
+            // btn5050Awol
+            // 
+            this.btn5050Awol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn5050Awol.BackgroundImage")));
+            this.btn5050Awol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn5050Awol.Location = new System.Drawing.Point(6, 56);
+            this.btn5050Awol.Name = "btn5050Awol";
+            this.btn5050Awol.Size = new System.Drawing.Size(108, 94);
+            this.btn5050Awol.TabIndex = 14;
+            this.btn5050Awol.UseVisualStyleBackColor = true;
+            this.btn5050Awol.Click += new System.EventHandler(this.btn5050Awol_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -327,6 +344,26 @@
             this.label1.Size = new System.Drawing.Size(140, 16);
             this.label1.TabIndex = 13;
             this.label1.Text = "Questions Down here  ";
+            // 
+            // btnSpecialQuizAwol
+            // 
+            this.btnSpecialQuizAwol.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSpecialQuizAwol.BackgroundImage")));
+            this.btnSpecialQuizAwol.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSpecialQuizAwol.Location = new System.Drawing.Point(368, 56);
+            this.btnSpecialQuizAwol.Name = "btnSpecialQuizAwol";
+            this.btnSpecialQuizAwol.Size = new System.Drawing.Size(108, 94);
+            this.btnSpecialQuizAwol.TabIndex = 15;
+            this.btnSpecialQuizAwol.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 170);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 20);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Game Ends:";
             // 
             // FormQuizAwol
             // 
@@ -379,5 +416,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn5050Awol;
+        private System.Windows.Forms.Button btnSpecialQuizAwol;
+        private System.Windows.Forms.Label label2;
     }
 }
