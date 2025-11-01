@@ -86,6 +86,7 @@ namespace quizemesterAwol
 
             btnStartAwol.Enabled = true;
             btnSkipAwol.Enabled = true;   // mag één keer; wordt disabled na gebruik
+            btn5050Awol.Enabled = false;
             gameTimerAwol.Stop();
         }
 
@@ -101,8 +102,12 @@ namespace quizemesterAwol
                 {
                     MessageBox.Show("No questions found for the selected categories.", "Quiz",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
+                    return; // ← hier stoppen we; daarom moet de reset erbóven niet staan
                 }
+
+                // --- reset joker voor dit NIEUWE potje ---
+                _joker5050Used = false;
+                btn5050Awol.Enabled = true;
 
                 // random volgorde vragen
                 _questions = _questions.OrderBy(_ => _rng.Next()).ToList();
@@ -112,7 +117,6 @@ namespace quizemesterAwol
                 _currentIndex = 0;
                 _quizRunning = true;
                 _isSpecialQuizMode = false; // start normale quiz
-
 
                 lblScoreValueAwol.Text = "0";
                 lblTimeValueAwol.Text = _timeRemaining.ToString();
@@ -354,14 +358,9 @@ namespace quizemesterAwol
         private void btn5050Awol_Click(object sender, EventArgs e)
         {
             if (!_quizRunning) return;
-            if (_joker5050Used)
-            {
-                MessageBox.Show("50/50 joker is al gebruikt.");
-                return;
-            }
+            if (_joker5050Used) return; // al gebruikt: niks doen
 
             var buttons = new[] { btnAawol, btnBawol, btnCawol, btnDawol };
-            // Bepaal correct en verkeerd
             var correctBtn = buttons.First(b => (b.Tag is bool ok) && ok);
             var wrongBtns = buttons.Where(b => !(b.Tag is bool ok) || !ok).ToList();
 
@@ -370,12 +369,11 @@ namespace quizemesterAwol
 
             // Schakel de andere twee uit
             foreach (var b in buttons)
-            {
-                bool keep = (b == correctBtn) || (b == keepWrong);
-                b.Enabled = keep;
-            }
+                b.Enabled = (b == correctBtn) || (b == keepWrong);
 
-            _joker5050Used = false;
+            // Markeer joker als gebruikt en zet de knop uit
+            _joker5050Used = true;
+            btn5050Awol.Enabled = false;
         }
 
         private void btnSpecialQuizAwol_Click(object sender, EventArgs e)
