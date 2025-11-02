@@ -102,7 +102,7 @@ namespace quizemesterAwol
                 {
                     MessageBox.Show("No questions found for the selected categories.", "Quiz",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return; // ← hier stoppen we; daarom moet de reset erbóven niet staan
+                    return;
                 }
 
                 // --- reset joker voor dit NIEUWE potje ---
@@ -111,6 +111,10 @@ namespace quizemesterAwol
 
                 // random volgorde vragen
                 _questions = _questions.OrderBy(_ => _rng.Next()).ToList();
+
+                // ---- SPECIAL QUESTION kiezen ----
+                int span = Math.Min(20, _questions.Count);
+                _specialIndex = (span > 0) ? _rng.Next(0, span) : (int?)null;
 
                 _score = 0;
                 _timeRemaining = 60;
@@ -137,22 +141,27 @@ namespace quizemesterAwol
 
         private void gameTimerAwol_Tick(object sender, EventArgs e)
         {
+            // Tempo instellen per modus
             if (_isSpecialQuizMode)
             {
+                if (gameTimerAwol.Interval != 250) gameTimerAwol.Interval = 250; // snellere weergave
                 if (!_quizRunning) return;
 
                 var elapsed = _totalStopwatch.Elapsed + TimeSpan.FromSeconds(_penaltySeconds);
-                // Toon mm:ss
                 lblTotalTimeAwol.Text = $"{(int)elapsed.TotalMinutes:00}:{elapsed.Seconds:00}";
-                return; // geen gewone timers/straffen hier
+                return; // geen normale timers in special
+            }
+            else
+            {
+                if (gameTimerAwol.Interval != 1000) gameTimerAwol.Interval = 1000; // langzamer: 1s per tick
             }
 
             if (!_quizRunning) return;
 
+            // Totaal-timer (normale quiz)
             _timeRemaining--;
             lblTimeValueAwol.Text = _timeRemaining.ToString();
 
-            // Alert near expiry
             if (_timeRemaining <= 10) lblTimeValueAwol.ForeColor = Color.OrangeRed;
             if (_timeRemaining == 10 || _timeRemaining <= 5)
                 System.Media.SystemSounds.Beep.Play();
@@ -160,15 +169,16 @@ namespace quizemesterAwol
             if (_timeRemaining <= 0)
             {
                 EndQuiz("Time's up!");
+                return;
             }
 
+            // Vraag-timer (normale quiz)
             _qTimeRemaining--;
             lblQtimeValueAwol.Text = _qTimeRemaining.ToString();
             if (_qTimeRemaining <= 3) lblQtimeValueAwol.ForeColor = Color.OrangeRed;
             if (_qTimeRemaining <= 0)
             {
-                NextQuestionOrFinish();
-                // ShowCurrentQuestion() reset de vraag-timer weer
+                NextQuestionOrFinish(); // ShowCurrentQuestion() reset de vraag-timer weer
             }
 
         }
@@ -210,7 +220,6 @@ namespace quizemesterAwol
             btnDawol.BackColor = SystemColors.Control;
 
             var q = _questions[_currentIndex];
-
             lblQuestionsAwol.Text = q.QuestionText;
 
             // === Special Question: kleur en geluid ===
@@ -228,7 +237,7 @@ namespace quizemesterAwol
                 lblQuestionsAwol.Font = new Font(lblQuestionsAwol.Font, FontStyle.Regular);
             }
 
-            // Antwoorden per vraag randomiseren, maar weten welke correct is
+            // Antwoorden random + juiste taggen
             var options = new List<(string Text, bool IsCorrect)>
             {
                 (q.OptionA, q.CorrectOption == 'A'),
@@ -256,59 +265,96 @@ namespace quizemesterAwol
                 lblQtimeValueAwol.Text = _qTimeRemaining.ToString();
                 lblQtimeValueAwol.ForeColor = Color.Black;
             }
-
         }
 
         private void AnswerSelected(Button btn)
         {
             if (!_quizRunning) return;
 
-            // blokkeer direct verdere input
+            // verdere input blokkeren
             SetAnswerButtonsEnabled(false);
 
             bool isCorrect = (btn.Tag is bool b) && b;
 
+            // --- SPECIAL QUIZ MODUS ---
+            if (_isSpecialQuizMode)
+            {
+                if (isCorrect)
+                {
+                    _score++;
+                    _specialQuizCorrect++;
+                    lblScoreValueAwol.Text = _score.ToString();
+                    btn.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    _penaltySeconds += 5; // +5s straf
+                    btn.BackColor = Color.LightCoral;
+                }
+
+                // korte visuele feedback en dan door
+                var tSQ = new Timer { Interval = 500 };
+                tSQ.Tick += (s, e) =>
+                {
+                    tSQ.Stop();
+                    btn.BackColor = SystemColors.Control;
+
+                    // klaar bij 10 correcte antwoorden
+                    if (_specialQuizCorrect >= 10)
+                    {
+                        _quizRunning = false;
+                        _totalStopwatch.Stop();
+                        gameTimerAwol.Stop();
+
+                        var total = _totalStopwatch.Elapsed + TimeSpan.FromSeconds(_penaltySeconds);
+                        MessageBox.Show($"Special Quiz finished!\nTime: {(int)total.TotalMinutes:00}:{total.Seconds:00}");
+
+                        ResetUi();
+                        _isSpecialQuizMode = false;
+                    }
+                    else
+                    {
+                        NextQuestionOrFinish();
+                    }
+                };
+                tSQ.Start();
+                return; // normale flow overslaan in special-modus
+            }
+
+            // --- NORMALE QUIZ ---
             if (isCorrect)
             {
                 _score++;
                 lblScoreValueAwol.Text = _score.ToString();
                 btn.BackColor = Color.LightGreen;
 
-                // special question bonus (als actief)
+                // special question bonus
                 if (_isSpecialActive)
                 {
                     _score += SPECIAL_BONUS;
                     lblScoreValueAwol.Text = _score.ToString();
-                    _isSpecialActive = false; // reset de vlag
+                    _isSpecialActive = false;
                 }
 
-                // geluid: goed
                 TryPlaySound("Sounds/correct.wav");
             }
             else
             {
                 btn.BackColor = Color.LightCoral;
-
-                // geluid: fout
                 TryPlaySound("Sounds/wrong.wav");
             }
 
-            // korte visuele feedback en dan door naar volgende vraag
-            var t = new Timer { Interval = 300 };
+            // korte visuele feedback en dan door
+            var t = new Timer { Interval = 500 };
             t.Tick += (s, e) =>
             {
                 t.Stop();
-
-                // reset kleur van de geklikte knop
                 btn.BackColor = SystemColors.Control;
-
-                NextQuestionOrFinish();
-
-                // in ShowCurrentQuestion() worden knoppen weer juist (de)geactiveerd
-                // dus hier niets opnieuw enablen
+                NextQuestionOrFinish(); // ShowCurrentQuestion() zet knoppen weer goed
             };
             t.Start();
         }
+
 
         private void NextQuestionOrFinish()
         {
