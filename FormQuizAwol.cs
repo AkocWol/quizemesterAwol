@@ -15,11 +15,14 @@ namespace quizemesterAwol
     public partial class FormQuizAwol : Form
     {
         // ===== Config =====
+        // Verbindt met je lokale SQL Server database
         private readonly string connectionString =
             @"Server=localhost\SQLEXPRESS;Database=quizemesterAwol;Trusted_Connection=True;";
+        // Random generator voor willekeurige volgordes en keuzes
         private readonly Random _rng = new Random();
 
         // ===== State =====
+        // hier benden staan alle game data wat er in de game gebeurd
         private List<QuizQuestion> _questions = new List<QuizQuestion>();
         private int _currentIndex = -1;
         private int _score = 0;
@@ -44,6 +47,7 @@ namespace quizemesterAwol
         private readonly Color _defaultPlayBg = SystemColors.Control; // originele bg van groupBox3
         private readonly System.Diagnostics.Stopwatch _totalStopwatch = new System.Diagnostics.Stopwatch();
 
+        // Wordt door het login-form gezet (wie speelt er)
         public string CurrentUsername { get; set; } = "Unknown";   // Zet dit vanuit Form1
 
         public FormQuizAwol()
@@ -52,13 +56,14 @@ namespace quizemesterAwol
         }
 
         // ===== Lifecycle =====
+        // Form load: initialiseer UI, laad categorieën, zet rollenlabel
         private void FormQuizAwol_Load(object sender, EventArgs e)
         {
             try
             {
-                ResetUi();
-                SetAnswerButtonsEnabled(false);
-                LoadCategoriesIntoCheckedListBox();
+                ResetUi(); // zet beginstatus van knoppen/labels/timers
+                SetAnswerButtonsEnabled(false); // antwoorden pas aanzetten nadat je starts
+                LoadCategoriesIntoCheckedListBox(); // vul categorie-keuze in de UI
             }
             catch (Exception ex)
             {
@@ -66,11 +71,12 @@ namespace quizemesterAwol
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            _adminOverride = false;
+            _adminOverride = false; // admin-toggle standaard uit
             if (chkAdminModeAwol != null) chkAdminModeAwol.Checked = false;
-            UpdateRoleLabel();
+            UpdateRoleLabel(); // UI updaten voor rolweergave
         }
 
+        // Herstelt UI naar ‘niet aan het spelen’
         private void ResetUi()
         {
             _score = 0;
@@ -84,8 +90,8 @@ namespace quizemesterAwol
             lblTimeValueAwol.ForeColor = Color.Black;
             lblQuestionsAwol.Text = "";
 
-            btnStartAwol.Enabled = true;
-            btnSkipAwol.Enabled = true;   // mag één keer; wordt disabled na gebruik
+            btnStartAwol.Enabled = true; // je mag weer starten
+            btnSkipAwol.Enabled = true;   // skip mag 1x; na gebruik wordt ’ie disabled
             btn5050Awol.Enabled = false;
             gameTimerAwol.Stop();
         }
@@ -113,22 +119,27 @@ namespace quizemesterAwol
                 _questions = _questions.OrderBy(_ => _rng.Next()).ToList();
 
                 // ---- SPECIAL QUESTION kiezen ----
+                // Special mag alleen gekozen worden uit de eerste 20 (of minder) vragen
                 int span = Math.Min(20, _questions.Count);
                 _specialIndex = (span > 0) ? _rng.Next(0, span) : (int?)null;
 
+                // Reset basisstatus voor nieuwe run
                 _score = 0;
                 _timeRemaining = 60;
                 _currentIndex = 0;
                 _quizRunning = true;
                 _isSpecialQuizMode = false; // start normale quiz
 
+                // UI labels updaten
                 lblScoreValueAwol.Text = "0";
                 lblTimeValueAwol.Text = _timeRemaining.ToString();
                 lblTimeValueAwol.ForeColor = Color.Black;
 
+                // Startknop uit, antwoorden aan
                 btnStartAwol.Enabled = false;
                 SetAnswerButtonsEnabled(true);
 
+                // Toon de eerste vraag en start de timer
                 ShowCurrentQuestion();
                 gameTimerAwol.Start();
             }
@@ -139,20 +150,23 @@ namespace quizemesterAwol
             }
         }
 
+        // Tick-handler van de timer: regelt aftellen en weergave
         private void gameTimerAwol_Tick(object sender, EventArgs e)
         {
-            // Tempo instellen per modus
+            // In special-modus loopt de timer sneller (250ms), en tonen we totale tijd + penalty
             if (_isSpecialQuizMode)
             {
                 if (gameTimerAwol.Interval != 250) gameTimerAwol.Interval = 250; // snellere weergave
                 if (!_quizRunning) return;
 
+                // Totale verstreken tijd + strafseconden tonen
                 var elapsed = _totalStopwatch.Elapsed + TimeSpan.FromSeconds(_penaltySeconds);
                 lblTotalTimeAwol.Text = $"{(int)elapsed.TotalMinutes:00}:{elapsed.Seconds:00}";
                 return; // geen normale timers in special
             }
             else
             {
+                // In normale modus tikt de timer elke seconde
                 if (gameTimerAwol.Interval != 1000) gameTimerAwol.Interval = 1000; // langzamer: 1s per tick
             }
 
@@ -162,10 +176,12 @@ namespace quizemesterAwol
             _timeRemaining--;
             lblTimeValueAwol.Text = _timeRemaining.ToString();
 
+            // Visuele/audio waarschuwingen bij weinig tijd
             if (_timeRemaining <= 10) lblTimeValueAwol.ForeColor = Color.OrangeRed;
             if (_timeRemaining == 10 || _timeRemaining <= 5)
                 System.Media.SystemSounds.Beep.Play();
 
+            // Als de totale tijd op is → einde quiz
             if (_timeRemaining <= 0)
             {
                 EndQuiz("Time's up!");
@@ -176,13 +192,16 @@ namespace quizemesterAwol
             _qTimeRemaining--;
             lblQtimeValueAwol.Text = _qTimeRemaining.ToString();
             if (_qTimeRemaining <= 3) lblQtimeValueAwol.ForeColor = Color.OrangeRed;
+
+            // Als de vraag-tijd op is → automatisch naar volgende vraag of afronden
             if (_qTimeRemaining <= 0)
             {
-                NextQuestionOrFinish(); // ShowCurrentQuestion() reset de vraag-timer weer
+                NextQuestionOrFinish(); // ShowCurrentQuestion() zal de vraag-timer weer resetten
             }
 
         }
 
+        // Maakt de quiz netjes af: stoppen, score opslaan, rank tonen, en UI resetten
         private void EndQuiz(string reason)
         {
             _quizRunning = false;
@@ -190,16 +209,22 @@ namespace quizemesterAwol
             SetAnswerButtonsEnabled(false);
             btnStartAwol.Enabled = true;
 
-            // Score opslaan + rank bepalen
+            // Bepaal of we een enkele categorie hadden (handig voor rankings per categorie)
             int? categoryIdToSave = _selectedCategoryIds.Count == 1 ? _selectedCategoryIds[0] : (int?)null;
+
+            // Score opslaan in DB + huidige positie in ranking terugkrijgen (+ of je Top10 haalt)
             var (rank, top10) = SaveScoreAndGetRank(CurrentUsername, _score, _questions.Count, categoryIdToSave);
 
+            // Extra melding als Top 10 gehaald is
             string extra = top10
                 ? $"\nYou made the Top 10! Current rank: {rank}"
                 : "";
+
+            // Einde-melding met reden + scoreoverzicht
             MessageBox.Show($"{reason}\nYour score: {_score}/{_questions.Count}{extra}",
                 "Quiz finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // UI terug naar beginstaat zodat je weer een nieuw potje kunt starten
             ResetUi();
         }
 
@@ -403,21 +428,24 @@ namespace quizemesterAwol
 
         private void btn5050Awol_Click(object sender, EventArgs e)
         {
-            if (!_quizRunning) return;
-            if (_joker5050Used) return; // al gebruikt: niks doen
+            if (!_quizRunning) return; // Alleen werken als de quiz actief is
+            if (_joker5050Used) return; // Joker al gebruikt? Dan niets doen
 
+            // Pak referenties naar de vier antwoordknoppen
             var buttons = new[] { btnAawol, btnBawol, btnCawol, btnDawol };
+            // Vind de correcte knop: Tag moet een bool zijn die true is
             var correctBtn = buttons.First(b => (b.Tag is bool ok) && ok);
+            // Verzamel alle 'verkeerde' knoppen: Tag ontbreekt of bool == false
             var wrongBtns = buttons.Where(b => !(b.Tag is bool ok) || !ok).ToList();
 
-            // Houd 1 willekeurige verkeerde over
+            // Laat één willekeurige verkeerde knop over (de andere twee gaan uit)
             var keepWrong = wrongBtns[_rng.Next(wrongBtns.Count)];
 
-            // Schakel de andere twee uit
+            // Schakel alle knoppen behalve de correcte + de bewaarde verkeerde uit
             foreach (var b in buttons)
                 b.Enabled = (b == correctBtn) || (b == keepWrong);
 
-            // Markeer joker als gebruikt en zet de knop uit
+            // Markeer dat de 50/50-joker gebruikt is en disable de joker-knop zelf
             _joker5050Used = true;
             btn5050Awol.Enabled = false;
         }
@@ -426,35 +454,39 @@ namespace quizemesterAwol
         {
             try
             {
+                // Zet de app in 'special quiz mode' (snelle modus)
                 _isSpecialQuizMode = true;
-                _specialQuizCorrect = 0;
-                _penaltySeconds = 0;
+                _specialQuizCorrect = 0; // reset teller goede antwoorden in special
+                _penaltySeconds = 0; // reset eventuele strafseconden
 
+                // Laad vragen voor de gekozen categorieën en schud de volgorde
                 _selectedCategoryIds = GetSelectedCategoryIds();
                 _questions = LoadQuestionsFromDb(_selectedCategoryIds)
                     .OrderBy(_ => _rng.Next()).ToList();
+
+                // Geen vragen gevonden? Meld het en stop
                 if (_questions.Count == 0)
                 {
                     MessageBox.Show("No questions found.", "Quiz", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                // disable normale timers / reset UI
+                // Reset basisstate voor deze special-run (normale timers staan 'uit' in deze modus)
                 _score = 0;
                 _currentIndex = 0;
                 _quizRunning = true;
                 lblScoreValueAwol.Text = "0";
 
-                // toon eerste vraag
+                // Laat meteen de eerste vraag zien en zet de antwoorden aan
                 SetAnswerButtonsEnabled(true);
                 ShowCurrentQuestion();
 
-                // stopwatch
+                // Start/Reset de stopwatch voor totale tijd (i.p.v. de normale quiz-timer)
                 _totalStopwatch.Reset();
                 _totalStopwatch.Start();
 
-                // gebruik je bestaande timer alleen om weergave bij te werken
-                gameTimerAwol.Interval = 250; // snellere update
+                // Gebruik de bestaande WinForms-timer alleen als 'UI refresher' (snellere ticks)
+                gameTimerAwol.Interval = 250; // 4x per seconde updaten
                 gameTimerAwol.Start();
             }
             catch (Exception ex)
@@ -468,14 +500,14 @@ namespace quizemesterAwol
         {
             var result = new List<QuizQuestion>();
 
-            // Als er geen categorie gekozen is → General (alle vragen)
+            // Als er geen categorie gekozen is → pak "General": alle actieve vragen (max 40)
             string sqlAll = @"
 SELECT TOP 40 QuestionID, QuestionText, OptionA, OptionB, OptionC, OptionD, CorrectOption
 FROM dbo.QuizQuestions
 WHERE IsActive = 1
 ORDER BY QuestionID;";
 
-            // Anders filter op gekozen categorieën
+            // Geen categorieën geselecteerd? → voer de algemene query uit.
             if (categoryIds == null || categoryIds.Count == 0)
             {
                 using (var con = new SqlConnection(connectionString))
@@ -483,13 +515,13 @@ ORDER BY QuestionID;";
                 {
                     con.Open();
                     using (var r = cmd.ExecuteReader())
-                        while (r.Read()) result.Add(ReadQuestion(r));
+                        while (r.Read()) result.Add(ReadQuestion(r)); // elke rij → QuizQuestion object
                 }
                 return result;
             }
             else
             {
-                // Dynamische IN (...) met parameters
+                // Wel categorieën: bouw een dynamische IN (...) met parameters (@p0, @p1, ...)
                 var paramNames = categoryIds.Select((id, idx) => "@p" + idx).ToList();
                 string sql = $@"
 SELECT TOP 40 QuestionID, QuestionText, OptionA, OptionB, OptionC, OptionD, CorrectOption
@@ -500,54 +532,60 @@ ORDER BY QuestionID;";
                 using (var con = new SqlConnection(connectionString))
                 using (var cmd = new SqlCommand(sql, con))
                 {
+                    // Koppel elke gekozen categorie aan de juiste parameter
                     for (int i = 0; i < categoryIds.Count; i++)
                         cmd.Parameters.AddWithValue(paramNames[i], categoryIds[i]);
 
                     con.Open();
                     using (var r = cmd.ExecuteReader())
-                        while (r.Read()) result.Add(ReadQuestion(r));
+                        while (r.Read()) result.Add(ReadQuestion(r)); // map elke datarij naar object
                 }
                 return result;
             }
         }
 
+        // Helper: vertaalt één database-rij naar een QuizQuestion object
         private QuizQuestion ReadQuestion(SqlDataReader r) => new QuizQuestion
         {
+            // Kolomindexen komen overeen met de SELECT volgorde
             QuestionID = r.GetInt32(0),
             QuestionText = r.GetString(1),
             OptionA = r.GetString(2),
             OptionB = r.GetString(3),
             OptionC = r.GetString(4),
             OptionD = r.GetString(5),
+            // CorrectOption staat als string in DB; eerste/alleen karakter omzetten naar char
             CorrectOption = Convert.ToChar(r.GetString(6))
         };
 
+        // Leest de aangevinkte categorieën uit de CheckedListBox en geeft hun IDs terug
         private List<int> GetSelectedCategoryIds()
         {
             var list = new List<int>();
             foreach (var item in clbCategoriesAwol.CheckedItems)
             {
-                if (item is CategoryItem c) list.Add(c.CategoryID);
+                if (item is CategoryItem c) list.Add(c.CategoryID); // pak de ID uit jouw wrapper type
             }
             return list;
         }
 
         private void LoadCategoriesIntoCheckedListBox()
         {
-            clbCategoriesAwol.Items.Clear();
+            clbCategoriesAwol.Items.Clear(); // eerst leegmaken
             const string sql = "SELECT CategoryID, Name FROM dbo.Categories ORDER BY Name;";
             using (var con = new SqlConnection(connectionString))
             using (var cmd = new SqlCommand(sql, con))
             {
-                con.Open();
+                con.Open(); // DB-verbinding openen
                 using (var r = cmd.ExecuteReader())
                 {
+                    // Elke rij uit Categories omzetten naar een CategoryItem en in de lijst zetten
                     while (r.Read())
                     {
                         clbCategoriesAwol.Items.Add(new CategoryItem
                         {
-                            CategoryID = r.GetInt32(0),
-                            Name = r.GetString(1)
+                            CategoryID = r.GetInt32(0), // eerste kolom
+                            Name = r.GetString(1) // tweede kolom
                         });
                     }
                 }
@@ -556,11 +594,11 @@ ORDER BY QuestionID;";
 
         private (int rank, bool top10) SaveScoreAndGetRank(string username, int score, int totalQuestions, int? categoryId)
         {
-            // Pak UserID
+            // Bepaal de UserID op basis van username
             int userId = GetUserIdByUsername(username);
             if (userId == 0) return (int.MaxValue, false);
 
-            // Insert score
+            // --- Score opslaan ---
             int scoreId;
             using (var con = new SqlConnection(connectionString))
             using (var cmd = new SqlCommand(@"
@@ -568,16 +606,19 @@ INSERT INTO dbo.Scores(UserID, Score, TotalQuestions, CategoryID)
 OUTPUT INSERTED.ScoreID
 VALUES(@uid, @s, @tq, @cid);", con))
             {
+                // Parameters binden (voorkomt SQL-injectie)
                 cmd.Parameters.AddWithValue("@uid", userId);
                 cmd.Parameters.AddWithValue("@s", score);
                 cmd.Parameters.AddWithValue("@tq", totalQuestions);
-                object cid = categoryId.HasValue ? (object)categoryId.Value : DBNull.Value;
+                object cid = categoryId.HasValue ? (object)categoryId.Value : DBNull.Value; // NULL toestaan
                 cmd.Parameters.AddWithValue("@cid", cid);
+
                 con.Open();
-                scoreId = (int)cmd.ExecuteScalar();
+                scoreId = (int)cmd.ExecuteScalar(); // haalt de nieuwe ScoreID op (via OUTPUT)
             }
 
-            // Rank = 1 + aantal scores die hoger zijn
+            // --- Rank bepalen ---
+            // Rank = 1 + aantal scores die HOGER zijn dan de huidige score
             int rank;
             using (var con = new SqlConnection(connectionString))
             using (var cmd = new SqlCommand("SELECT 1 + COUNT(*) FROM dbo.Scores WHERE Score > @s;", con))
@@ -587,35 +628,39 @@ VALUES(@uid, @s, @tq, @cid);", con))
                 rank = (int)cmd.ExecuteScalar();
             }
 
+            // top10 = true als rank ≤ 10
             return (rank, rank <= 10);
         }
 
         private int GetUserIdByUsername(string username)
         {
+            // Maakt DB-verbinding en zoekt de UserID behorend bij de opgegeven username
             using (var con = new SqlConnection(connectionString))
             using (var cmd = new SqlCommand("SELECT UserID FROM dbo.Users WHERE Username=@u;", con))
             {
-                cmd.Parameters.AddWithValue("@u", username);
-                con.Open();
-                var obj = cmd.ExecuteScalar();
-                return obj == null ? 0 : Convert.ToInt32(obj);
+                cmd.Parameters.AddWithValue("@u", username); // geparameteriseerd → voorkomt SQL-injectie
+                con.Open(); 
+                var obj = cmd.ExecuteScalar(); // pakt 1e kolom van 1e rij (of null als niets)
+                return obj == null ? 0 : Convert.ToInt32(obj); // 0 teruggeven wanneer user niet bestaat
             }
         }
 
         private List<(string Username, int Score)> GetTop10Scores()
         {
+            // Haalt de Top 10 scores op met bijbehorende gebruikersnaam
             var list = new List<(string, int)>();
             const string sql = @"
 SELECT TOP 10 u.Username, s.Score
 FROM dbo.Scores s
 JOIN dbo.Users u ON u.UserID = s.UserID
-ORDER BY s.Score DESC, s.CreatedAt ASC;";
+ORDER BY s.Score DESC, s.CreatedAt ASC;"; // bij gelijke score: oudste eerst
             using (var con = new SqlConnection(connectionString))
             using (var cmd = new SqlCommand(sql, con))
             {
                 con.Open();
                 using (var r = cmd.ExecuteReader())
                 {
+                    // Voeg elke rij toe als tuple (Username, Score)
                     while (r.Read())
                         list.Add((r.GetString(0), r.GetInt32(1)));
                 }
@@ -626,6 +671,7 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
         // ===== Models =====
         private class QuizQuestion
         {
+            // Eén vraag met 4 opties en een juiste letter ('A'..'D')
             public int QuestionID { get; set; }
             public string QuestionText { get; set; } = "";
             public string OptionA { get; set; } = "";
@@ -636,31 +682,37 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
         }
         private class CategoryItem
         {
+            // Item voor in de CheckedListBox (toon Name, bewaar CategoryID)
             public int CategoryID { get; set; }
             public string Name { get; set; } = "";
-            public override string ToString() => Name;
+            public override string ToString() => Name; // zorgt dat de lijst de naam toont
         }
 
         private void btnAdminAwol_Click(object sender, EventArgs e)
         {
+            // Controleer of de huidige sessie adminrechten heeft
+            // (kijkt zowel naar de DB als naar de override)
             if (!IsAdminSession())   // <-- gebruik override + DB
             {
-                MessageBox.Show("Admins only.");
+                MessageBox.Show("Admins only."); // niet-admins mogen dit niet openen
                 return;
             }
+
+            // Open het Admin-scherm als dialoog (modal venster)
             using (var f = new FormAdminAwol(connectionString))
                 f.ShowDialog(this);
         }
 
         private bool IsCurrentUserAdmin()
         {
+            // Vraagt in de database op of de huidige gebruiker adminrechten heeft
             using (var con = new SqlConnection(connectionString))
             using (var cmd = new SqlCommand("SELECT IsAdmin FROM dbo.Users WHERE Username=@u;", con))
             {
                 cmd.Parameters.AddWithValue("@u", CurrentUsername);
                 con.Open();
-                var o = cmd.ExecuteScalar();
-                return o != null && Convert.ToBoolean(o);
+                var o = cmd.ExecuteScalar(); // haalt de IsAdmin-waarde (True/False) op
+                return o != null && Convert.ToBoolean(o); // geef true terug als IsAdmin = 1 / true
             }
         }
 
@@ -674,24 +726,28 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
         {
             if (lblRoleAwol != null)
                 lblRoleAwol.Text = IsAdminSession()
-                    ? (_adminOverride ? "Role: Admin" : "Role: Admin")
+                    ? (_adminOverride ? "Role: Admin" : "Role: Admin") // in beide gevallen “Admin”
                     : "Role: Player";
         }
 
+        // Event-handler voor de checkbox waarmee je tijdelijk adminrechten kunt aanzetten
         private void chkAdminModeAwol_CheckedChanged(object sender, EventArgs e)
         {
-            _adminOverride = chkAdminModeAwol.Checked;
-            UpdateRoleLabel();
-        }
+            _adminOverride = chkAdminModeAwol.Checked; // zet override aan/uit
+            UpdateRoleLabel(); // pas de roltekst direct aan
+        } 
 
         private void TryPlaySound(string path)
-{
+        {
             try
             {
+                // Controleer of het opgegeven geluidsbestand bestaat 
+                // op een of ander manier werkt de geluidsbestand niet terwijl het het wel eerst wel deet
                 if (System.IO.File.Exists(path))
                 {
+                    // Maak een tijdelijke SoundPlayer aan en speel het geluid af
                     using (SoundPlayer player = new SoundPlayer(path))
-                        player.Play();
+                        player.Play(); // speelt asynchroon af (programma loopt gewoon verder)
                 }
             }
             catch
@@ -699,6 +755,5 @@ ORDER BY s.Score DESC, s.CreatedAt ASC;";
                 // geen foutmelding tonen als geluid ontbreekt
             }
         }
-
     }
 }

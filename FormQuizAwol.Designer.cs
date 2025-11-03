@@ -53,13 +53,13 @@
             this.lblRoleAwol = new System.Windows.Forms.Label();
             this.GameManagementAwol = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblTotalTimeAwol = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnSpecialQuizAwol = new System.Windows.Forms.Button();
             this.btn5050Awol = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblTotalTimeAwol = new System.Windows.Forms.Label();
             this.GameManagementAwol.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -297,6 +297,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Game Info";
             // 
+            // lblTotalTimeAwol
+            // 
+            this.lblTotalTimeAwol.AutoSize = true;
+            this.lblTotalTimeAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalTimeAwol.Location = new System.Drawing.Point(111, 170);
+            this.lblTotalTimeAwol.Name = "lblTotalTimeAwol";
+            this.lblTotalTimeAwol.Size = new System.Drawing.Size(50, 20);
+            this.lblTotalTimeAwol.TabIndex = 17;
+            this.lblTotalTimeAwol.Text = "00:00";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -367,16 +377,6 @@
             this.label1.Size = new System.Drawing.Size(140, 16);
             this.label1.TabIndex = 13;
             this.label1.Text = "Questions Down here  ";
-            // 
-            // lblTotalTimeAwol
-            // 
-            this.lblTotalTimeAwol.AutoSize = true;
-            this.lblTotalTimeAwol.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalTimeAwol.Location = new System.Drawing.Point(111, 170);
-            this.lblTotalTimeAwol.Name = "lblTotalTimeAwol";
-            this.lblTotalTimeAwol.Size = new System.Drawing.Size(50, 20);
-            this.lblTotalTimeAwol.TabIndex = 17;
-            this.lblTotalTimeAwol.Text = "00:00";
             // 
             // FormQuizAwol
             // 
